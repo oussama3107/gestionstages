@@ -1,0 +1,233 @@
+/* src/css/Login_AnimatedBg.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@400&display=swap');
+
+:root {
+    --login-bg-color-1: #f0f4f8; /* Blanc cassé très clair */
+    --login-bg-color-2: #e6eaf0; /* Gris bleuté clair */
+    --login-bg-color-3: #dde3ea; /* Un peu plus foncé */
+    --login-bg-color-4: #d1d8e0; /* Encore plus foncé */
+
+    --login-primary: #007bff; /* Bleu primaire */
+    --login-primary-hover: #0056b3; /* Bleu primaire foncé */
+    --login-text-dark: #343a40;
+    --login-text-light: #f8f9fa;
+    --login-text-muted: #6c757d;
+    --login-border-color: #ced4da;
+    --login-input-bg: #ffffff;
+    --login-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --login-font-main: 'Roboto', sans-serif;
+    --login-font-header: 'Poppins', sans-serif;
+
+    --login-error-bg: #f8d7da;
+    --login-error-text: #721c24;
+    --login-error-border: #f5c6cb;
+    --login-success-bg: #d1e7dd;
+    --login-success-text: #0f5132;
+    --login-success-border: #badbcc;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--login-font-main);
+    color: var(--login-text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+
+    background-repeat: no-repeat; 
+    background-size: cover;/* Empêcher scroll horizontal */
+}
+
+/* --- Page Wrapper avec Fond Animé --- */
+.login-animated-page-wrapper {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-size: 400% 400%;
+    animation: gradientBG 20s ease infinite;
+    overflow: hidden; /* Important pour que le pseudo-élément ne cause pas de scroll */
+}
+
+/* Option: Ajouter des formes animées en pseudo-éléments */
+.login-animated-page-wrapper::before,
+.login-animated-page-wrapper::after {
+    content: '';
+    position: absolute;
+    z-index: 0; /* Derrière le contenu */
+    border-radius: 50%;
+    opacity: 0.1; /* Très subtil */
+}
+
+.login-animated-page-wrapper::before { /* Grande forme 1 */
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(45deg, var(--login-primary), var(--login-accent));
+    top: -50px;
+    left: -80px;
+    animation: floatShape 25s ease-in-out infinite alternate;
+}
+
+.login-animated-page-wrapper::after { /* Grande forme 2 */
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(-45deg, var(--login-accent), var(--login-primary-hover));
+    bottom: -100px;
+    right: -120px;
+    animation: floatShapeReverse 30s ease-in-out infinite alternate;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes floatShape {
+    0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) translateX(30px) rotate(180deg); }
+    100% { transform: translateY(0px) translateX(0px) rotate(360deg); }
+}
+@keyframes floatShapeReverse {
+    0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    50% { transform: translateY(25px) translateX(-35px) rotate(-180deg); }
+    100% { transform: translateY(0px) translateX(0px) rotate(-360deg); }
+}
+
+
+/* --- Navbar (Styles Similaires) --- */
+.login-modern-navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Transparence pour voir l'animation */
+    backdrop-filter: blur(8px); /* Effet verre dépoli */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+    height: 65px; padding: 0 4%; width: 100%;
+    z-index: 10; flex-shrink: 0; position: sticky; top: 0;
+}
+.login-modern-navbar-brand { display: flex; align-items: center; text-decoration: none; }
+.login-modern-logo { height: 35px; margin-right: 8px; }
+.login-modern-app-name { /* Si vous en avez un */ }
+.login-modern-nav-links { display: flex; gap: 25px; }
+.login-modern-nav-links a { text-decoration: none; color: var(--login-text-muted); font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
+.login-modern-nav-links a:hover { color: var(--login-primary); }
+.login-modern-nav-button.primary { background-color: var(--login-primary); color: white; padding: 8px 18px; border-radius: 5px; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: background-color 0.2s; }
+.login-modern-nav-button.primary:hover { background-color: var(--login-primary-hover); }
+
+
+/* --- Conteneur Central Login --- */
+.login-animated-container {
+    background-color: transparent;
+    width: 100%; margin: auto;
+    display: flex; align-items: center; justify-content: center; /* Centrer le formulaire si l'image est cachée */
+    flex-grow: 1; padding: 30px 15px; z-index: 1; /* Au-dessus des formes animées */
+}
+
+
+.login-animated-form-content {
+    flex: 1; display: flex; justify-content: center; /* Centrer le formulaire */
+
+    align-items: center;
+}
+.login-animated-form {
+    width: 100%; max-width: 500px;
+    background-color: transparent ;
+    backface-visibility: 50%; /* Formulaire légèrement transparent */
+    padding: 35px 40px; border-radius: 12px;
+    box-shadow: var(--login-shadow); backdrop-filter: blur(5px);
+    text-align: center;
+    /* Animation d'entrée pour le formulaire */
+    opacity: 0; transform: translateX(40px); animation: slideInRightAnim 0.7s ease-out 0.5s forwards;
+}
+@keyframes slideInRightAnim { to { opacity: 1; transform: translateX(0); } }
+
+
+.login-animated-title { font-family: var(--login-font-header); color: var(--login-text-dark); font-size: 2rem; font-weight: 700; margin-bottom: 10px; }
+.login-animated-subtitle { font-size: 1rem; color: var(--login-text-muted); margin-bottom: 30px; }
+
+/* Messages */
+.login-animated-message { padding: 12px; border-radius: 6px; margin-bottom: 20px; font-weight: 500; font-size: 0.9em; text-align: center; }
+.login-animated-message.success { background-color: var(--login-success-bg); color: var(--login-success-text); border: 1px solid var(--login-success-border); }
+.login-animated-message.error { background-color: var(--login-error-bg); color: var(--login-error-text); border: 1px solid var(--login-error-border); }
+
+/* Inputs (Style inspiré de la vidéo, adapté) */
+.login-animated-input-div {
+    position: relative;
+    display: grid;
+    grid-template-columns: 15% 85%; /* Icône | Input Field */
+    margin: 20px 0; /* Réduit un peu */
+    padding: 5px 0;
+    border-bottom: 2px solid var(--login-border-color);
+    transition: border-bottom-color 0.3s;
+}
+/* Soulignement animé */
+.login-animated-input-div::after, .login-animated-input-div::before {
+    content: ''; position: absolute; bottom: -2px; width: 0%; height: 2px;
+    background-color: var(--login-accent); transition: width .4s;
+}
+.login-animated-input-div::after { right: 50%; }
+.login-animated-input-div::before { left: 50%; }
+.login-animated-input-div.focus::after, .login-animated-input-div.focus::before { width: 50%; }
+
+.input-icon-wrapper { display: flex; justify-content: center; align-items: center; }
+.input-icon-wrapper i { color: #c0cad8; font-size: 1.1rem; transition: .3s; }
+.login-animated-input-div.focus .input-icon-wrapper i { color: var(--login-accent); }
+
+.input-field-wrapper { position: relative; height: 45px; }
+.input-field-wrapper h5 { /* Le label qui monte */
+    position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+    color: var(--login-text-muted); font-size: 1rem; font-weight: 500;
+    transition: .3s; pointer-events: none;
+}
+.login-animated-input-div.focus .input-field-wrapper h5,
+.login-animated-input-div.has-value .input-field-wrapper h5 {
+    top: -5px; font-size: 0.8rem; color: var(--login-accent); font-weight: 600;
+}
+
+.login-animated-input-div .input { /* L'input réel */
+    position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+    border: none; outline: none; background: none; padding: 0.5rem 0.7rem;
+    font-size: 1rem; color: var(--login-text-dark); font-family: 'Poppins', sans-serif;
+}
+
+/* Bouton Afficher/Masquer Mot de Passe */
+.password-toggle-btn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px; /* Agrandir zone de clic */
+    color: var(--login-text-muted);
+    font-size: 1.1rem;
+    z-index: 2; /* Au-dessus de l'input */
+}
+.password-toggle-btn:hover { color: var(--login-primary); }
+.password-toggle-btn:focus { outline: none; }
+
+
+/* Bouton Connexion */
+.login-animated-btn {
+    display: block; width: 100%; height: 50px; border-radius: 25px;
+    outline: none; border: none;
+    background-color:  #0099cc;
+    background-size: 200%; font-size: 1.1rem; color: #fff;
+    font-family: var(--login-font-header); font-weight: 600; text-transform: uppercase;
+    margin: 30px 0; cursor: pointer; transition: all .5s;
+}
+.login-animated-btn:hover { background-position: right; }
+.login-animated-btn:disabled { background-image: linear-gradient(to right, #ccc, #ddd, #ccc); cursor: not-allowed; opacity: 0.7; }
+.login-animated-btn .spinner { /* ... */ }
+
+/* Lien Inscription */
+.login-animated-register-prompt { text-align: center; font-size: 0.9em; color: var(--login-text-muted); }
+.login-animated-register-link { color: var(--login-primary); text-decoration: none; font-weight: 600; }
+.login-animated-register-link:hover { text-decoration: underline; color: var(--login-primary-hover); }
+
+/* Responsive */
+@media screen and (max-width: 1050px){ .login-animated-container{ gap: 2rem;  } }
+@media screen and (max-width: 900px){ .login-animated-container{ grid-template-columns: 1fr; flex-direction: column; } .login-animated-img-container{ display: none; } .login-animated-form-content{ justify-content: center; width:100%; padding: 20px;} .login-animated-form { max-width: 400px; margin: 20px auto;} .login-animated-page-wrapper::before, .login-animated-page-wrapper::after { display: none;} /* Cache formes animées si image principale cachée */ }
+@media screen and (max-width: 480px){ .login-modern-navbar { flex-direction: column; height: auto; padding: 15px; gap: 10px;} .login-modern-nav-links {flex-direction: column; align-items: center; gap: 10px; margin: 10px 0;} .login-modern-nav-button.primary {width:100%; text-align:center;} .login-animated-form { padding: 25px 20px; } .login-animated-title { font-size: 1.6rem; } .login-animated-input-div{ margin: 18px 0;} .input-field-wrapper h5 { font-size: 0.95rem; } .input-field-wrapper .input { font-size: 0.95rem; } .login-animated-btn { height: 45px; font-size: 1rem; } }
+

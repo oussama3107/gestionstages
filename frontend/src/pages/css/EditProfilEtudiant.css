@@ -1,0 +1,227 @@
+/* src/css/EditProfilEtudiant.css */
+
+/* --- Variables (Optionnel) --- */
+:root {
+  --edit-primary: #0d6efd;
+  --edit-secondary: #6c757d;
+  --edit-light-gray: #f8f9fa;
+  --edit-medium-gray: #ced4da;
+  --edit-dark-gray: #495057;
+  --edit-success: #198754;
+  --edit-danger: #dc3545;
+  --edit-white: #ffffff;
+  --edit-input-border: #ced4da;
+  --edit-input-focus-border: #86b7fe;
+  --edit-input-focus-shadow: rgba(13, 110, 253, 0.25);
+}
+
+/* --- Page Conteneur --- */
+.edit-profil-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f4f7fc; /* Fond léger */
+}
+
+/* --- Navbar (peut réutiliser .etudiant-navbar si défini globalement) --- */
+.etudiant-navbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 35px; background-color: var(--edit-white);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06); border-bottom: 1px solid var(--edit-medium-gray);
+  position: sticky; top: 0; z-index: 1000;
+}
+
+.navbar-links { display: flex; gap: 28px; }
+.navbar-links a { text-decoration: none; color: var(--edit-secondary); font-weight: 500; padding-bottom: 8px; border-bottom: 3px solid transparent; transition: color 0.3s ease, border-color 0.3s ease; }
+.navbar-links a:hover, .navbar-links a.active { color: var(--edit-primary); border-bottom-color: var(--edit-primary); }
+.navbar-actions .logout-button { /* Style repris */ padding: 9px 20px; background-color: var(--edit-danger); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease; }
+.navbar-actions .logout-button:hover { background-color: #bb2d3b; }
+
+/* --- Conteneur du Formulaire --- */
+.edit-profil-container {
+  max-width: 800px; /* Largeur max du formulaire */
+  margin: 40px auto; /* Centrer avec marges */
+  padding: 30px 40px;
+  background-color: var(--edit-white);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--edit-medium-gray);
+}
+
+.edit-profil-container h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: var(--edit-primary);
+  font-weight: 600;
+}
+
+/* --- Messages Formulaire --- */
+.form-message {
+  padding: 12px 18px;
+  margin-bottom: 25px;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: 500;
+}
+.form-message.success {
+  background-color: #d1e7dd; /* Fond vert clair */
+  color: #0f5132; /* Texte vert foncé */
+  border: 1px solid #badbcc;
+}
+.form-message.error {
+  background-color: #f8d7da; /* Fond rouge clair */
+  color: #842029; /* Texte rouge foncé */
+  border: 1px solid #f5c2c7;
+}
+
+/* --- Prévisualisation Photo --- */
+.current-photo-preview {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.current-photo-preview p {
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: var(--edit-secondary);
+}
+.current-photo-preview img {
+  max-width: 150px;
+  height: auto;
+  border-radius: 50%;
+  border: 3px solid var(--edit-medium-gray);
+}
+
+
+/* --- Formulaire --- */
+.edit-profil-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espace vertical entre groupes/lignes */
+}
+
+/* Lignes de formulaire pour grouper champs */
+.form-row {
+  display: flex;
+  gap: 20px; /* Espace horizontal entre champs */
+}
+.form-row .form-group {
+  flex: 1; /* Chaque groupe prend part égale */
+}
+/* Groupe de champ sur toute la largeur */
+.form-group.full-width {
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column; /* Label au-dessus de l'input */
+  gap: 6px; /* Espace entre label et input */
+}
+
+.form-group label {
+  font-weight: 500;
+  color: var(--edit-dark-gray);
+  font-size: 0.95em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="tel"] {
+  padding: 10px 12px;
+  border: 1px solid var(--edit-input-border);
+  border-radius: 4px;
+  font-size: 1em;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus,
+.form-group input[type="tel"]:focus {
+  outline: none;
+  border-color: var(--edit-input-focus-border);
+  box-shadow: 0 0 0 0.25rem var(--edit-input-focus-shadow);
+}
+
+/* Groupe de fichiers */
+.file-group label {
+  display: block; /* Prend toute la largeur */
+  margin-bottom: 8px;
+}
+
+.file-group input[type="file"] {
+  font-size: 0.95em;
+  /* Style par défaut souvent limité, peut être customisé avec des techniques plus avancées */
+  border: 1px solid var(--edit-input-border);
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.current-file-link {
+  display: block; /* Sous le label */
+  font-size: 0.85em;
+  color: var(--edit-secondary);
+  margin-top: 5px;
+}
+.current-file-link a {
+  color: var(--edit-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+.current-file-link a:hover {
+  text-decoration: underline;
+}
+
+/* Séparateur */
+.form-divider {
+  border: none;
+  border-top: 1px solid var(--edit-medium-gray);
+  margin: 15px 0; /* Espace autour */
+}
+.edit-profil-form h3 {
+  margin-top: 0;
+  margin-bottom: 0px; /* Réduire espace après h3 */
+  font-size: 1.2em;
+  color: var(--edit-secondary);
+}
+
+/* Bouton Soumission */
+.submit-button {
+  padding: 12px 25px;
+  margin-top: 15px; /* Espace au-dessus */
+  background-color: var(--edit-success);
+  color: var(--edit-white);
+  border: none;
+  border-radius: 5px;
+  font-size: 1.05em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  align-self: center; /* Centrer le bouton */
+  min-width: 200px; /* Largeur minimale */
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: #157347; /* Vert plus foncé */
+}
+
+.submit-button:disabled {
+  background-color: var(--edit-secondary);
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+
+/* Utilitaires (si pas déjà définis globalement) */
+.loading-container {
+  text-align: center; padding: 50px; font-size: 1.1em; color: var(--edit-dark-gray);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .edit-profil-container { margin: 20px; padding: 20px; }
+  .form-row { flex-direction: column; gap: 20px; } /* Empiler les champs sur mobile */
+}

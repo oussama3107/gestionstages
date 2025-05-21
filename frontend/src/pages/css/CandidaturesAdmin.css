@@ -1,0 +1,181 @@
+/* src/css/CandidaturesAdmin.css */
+
+/* Importer ou réutiliser les variables de DashboardAdmin_Modern.css */
+/* :root { ... } */
+
+/* Styles généraux de layout hérités de DashboardAdmin_Modern.css si importé */
+/* .admin-dashboard-layout, .admin-sidebar, .admin-main-container, .admin-top-navbar etc. */
+/* Assurez-vous que DashboardAdmin_Modern.css est importé AVANT ce fichier dans CandidaturesAdmin.jsx */
+/* OU copiez les styles de layout pertinents ici */
+
+:root {
+  /* ... autres variables ... */
+  --admin-primary: #4f46e5;       /* Indigo */
+  --admin-secondary: #6b7280;    /* Gris pour "Inconnu", "Archivée" */
+  --admin-success: #10b981;     /* Vert pour "Acceptée" */
+  --admin-danger: #ef4444;      /* Rouge pour "Refusée" */
+  --admin-warning: #f59e0b;     /* Orange pour "Entretien" */
+  --admin-info: #3b82f6;        /* Bleu pour "Reçue/Envoyée" */
+
+  /* Couleur spécifique pour le statut "Vue / Consultée" */
+  --admin-vue: #64748B;         /* Gris moyen (identique à secondary par défaut) */
+  /* OU une autre couleur si vous voulez la distinguer, par exemple un bleu plus clair : */
+  /* --admin-vue: #60a5fa; */   /* Bleu ciel */
+  /* OU un gris légèrement différent : */
+  /* --admin-vue: #9ca3af; */   /* Gris plus clair que secondary */
+
+  --admin-white: #ffffff;
+  /* ... autres ... */
+}
+/* Styles spécifiques au contenu de cette page */
+.admin-main-content {
+    /* Hérite padding de .admin-main-content de DashboardAdmin_Modern.css */
+}
+.admin-main-content h1 {
+    /* Hérite style h1 de DashboardAdmin_Modern.css */
+    margin-bottom: 25px; /* Réduire espace */
+}
+
+/* Barre de Filtres (peut réutiliser .filters-container) */
+.filters-container.admin-card {
+    display: flex; flex-wrap: wrap; gap: 20px; padding: 20px;
+    margin-bottom: 30px; /* Espace avant le tableau */
+}
+.filter-item { display: flex; align-items: center; gap: 8px; }
+.filter-item.search-filter { flex-grow: 1; min-width: 250px; position: relative; }
+.filter-item label { font-size: 0.9em; color: var(--admin-text-secondary); font-weight: 500; }
+.filter-item i { color: var(--admin-text-secondary); opacity: 0.8; margin-right: 6px; }
+.filter-item input[type="search"], .filter-item select { padding: 10px 12px; border: 1px solid var(--admin-border-color); border-radius: 6px; font-size: 0.95em; flex-grow: 1; background-color: var(--admin-white); }
+.filter-item input[type="search"] { padding-left: 35px; } /* Pour icône interne */
+.filter-item .fa-search { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 0.85em; opacity: 0.7;}
+.filter-item input:focus, .filter-item select:focus { outline: none; border-color: var(--admin-primary); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15); }
+
+/* Message d'action */
+.action-message { /* Hérite de DashboardAdmin_Modern.css */ }
+
+/* --- Section Tableau Candidatures --- */
+.admin-candidatures-table-section { /* Utilise .admin-card */ }
+.table-header { /* Styles repris de DashboardAdmin */ }
+.table-search-container { /* Styles repris de DashboardAdmin */ }
+.table-search-input { /* Styles repris de DashboardAdmin */ }
+
+/* Tableau */
+.admin-data-table.candidatures { /* Classe spécifique */ width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.admin-data-table.candidatures thead tr { border-bottom: 1px solid var(--admin-border-color); }
+.admin-data-table.candidatures th { background-color: var(--admin-bg); color: var(--admin-text-secondary); text-align: left; padding: 12px 15px; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.6px; white-space: nowrap; }
+.admin-data-table.candidatures th:last-child, .admin-data-table.candidatures td:last-child { text-align: right; padding-right: 20px; }
+.admin-data-table.candidatures tbody tr { border-bottom: 1px solid var(--admin-border-color); transition: background-color 0.15s ease; }
+.admin-data-table.candidatures tbody tr:last-child { border-bottom: none; }
+.admin-data-table.candidatures tbody tr:hover:not(.admin-cand-detail-row) { background-color: #f9fafb; } /* Ne pas appliquer sur ligne détail */
+.admin-data-table.candidatures td { padding: 12px 15px; color: var(--admin-text-primary); vertical-align: middle; font-size: 0.9em;}
+
+/* Cellule Étudiant */
+.user-cell { display: flex; align-items: center; gap: 12px; }
+.user-avatar { width: 40px; height: 40px; border-radius: 50%; background-color: var(--admin-bg); display: flex; justify-content: center; align-items: center; overflow: hidden; border: 1px solid var(--admin-border-color); flex-shrink: 0;}
+.user-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.cand-avatar-initials { font-size: 1em; font-weight: 600; color: var(--admin-secondary); }
+.user-info { display: flex; flex-direction: column; }
+.user-name { font-weight: 600; font-size: 0.95em; color: var(--admin-text-primary); margin-bottom: 1px; }
+.user-email { font-size: 0.85em; color: var(--admin-text-secondary); }
+
+/* Cellule Offre & Entreprise */
+.offre-title-table { display: block; font-weight: 500; font-size:0.9em; color: var(--admin-text-primary); margin-bottom: 2px;}
+.entreprise-table { display: block; font-size: 0.85em; color: var(--admin-text-secondary); }
+
+/* Badge Statut */
+.application-status-badge { font-size: 0.75em; font-weight: bold; padding: 4px 10px; border-radius: 15px; color: var(--admin-white); text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; }
+.status-envoyee { background-color: var(--admin-info); }
+.status-vue { background-color: var(--admin-vue); color: #000;}
+.status-entretien, .status-entretien_planifie, .status-entretien_effectue { background-color: var(--admin-warning); color: #333; } /* Ajout autres statuts entretien */
+.status-acceptee { background-color: var(--admin-success); }
+.status-refusee { background-color: var(--admin-danger); }
+.status-archivee { background-color: var(--admin-secondary); }
+.status-inconnu { background-color: var(--admin-secondary); }
+
+/* Boutons d'action Table */
+.admin-data-table td[data-label="Actions"] { white-space: nowrap; }
+.admin-actions-cell {position: relative; right: 80px;}
+.admin-action-btn { background: none; border: none; padding: 6px; margin: 0 1px; cursor: pointer; font-size: 1.1em; vertical-align: middle; transition: color 0.2s ease, transform 0.2s ease, opacity 0.2s ease; color: var(--admin-secondary); border-radius: 50%; width: 34px; height: 34px; line-height: 1; display: inline-flex; justify-content: center; align-items: center;}
+.admin-action-btn:hover { transform: scale(1.1); }
+.admin-action-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+.admin-action-btn.view:hover { color: var(--admin-primary); background-color: rgba(79, 70, 229, 0.1); }
+.admin-action-btn.accept:hover { color: var(--admin-success); background-color: rgba(16, 185, 129, 0.1); }
+.admin-action-btn.reject:hover { color: var(--admin-danger); background-color: rgba(239, 68, 68, 0.1); }
+.admin-action-btn.mark-viewed:hover { color: #525f7f; background-color: rgba(107, 114, 128, 0.1); }
+.admin-action-btn.archive:hover { background-color: rgba(107, 114, 128, 0.1); color: var(--admin-text-primary); }
+.admin-action-btn.delete:hover { color: var(--admin-danger); background-color: rgba(239, 68, 68, 0.1); }
+.admin-action-btn i.fa-spinner { color: var(--admin-primary); animation: spinAdmin 1s linear infinite; }
+
+/* Ligne Détails */
+.admin-cand-detail-row td { padding: 0; background-color: #fdfdff; border-left: 3px solid var(--admin-primary); border-right: 3px solid var(--admin-primary);}
+.admin-cand-detail-content { padding: 25px 30px; animation: fadeInDetails 0.3s ease-out; }
+@keyframes fadeInDetails { from { opacity: 0; } to { opacity: 1; } }
+.admin-cand-detail-content h4 { margin-top: 0; margin-bottom: 20px; color: var(--admin-primary); font-size: 1.2em; border-bottom: 1px solid var(--admin-border-color); padding-bottom: 10px; }
+.detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px 30px; }
+.detail-section { margin-bottom: 15px; }
+.detail-section h5 { font-size: 1em; color: var(--admin-secondary); margin-bottom: 10px; font-weight: 600; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #eee; padding-bottom: 8px;}
+.detail-section h5 i { font-size: 0.9em; }
+.detail-info p, .detail-docs p { margin-bottom: 8px; font-size: 0.95em; line-height: 1.5; }
+.detail-info p i, .detail-docs p i { margin-right: 8px; color: var(--admin-secondary); width: 16px; text-align: center; }
+.detail-info p strong, .detail-docs p strong { color: #555; min-width: 110px; display: inline-block; font-weight: 600;}
+.cand-motivation-message { white-space: pre-wrap; word-wrap: break-word; background-color: var(--admin-light-gray); padding: 12px; border-radius: 4px; border: 1px solid var(--admin-border-color); max-height: 150px; overflow-y: auto; margin: 5px 0 15px 0; font-size: 0.9em; grid-column: 1 / -1; line-height: 1.6;}
+.file-link { color: var(--admin-primary); text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; padding: 3px 0;}
+.file-link:hover { text-decoration: underline; color: var(--admin-primary-dark); }
+.file-link i { font-size: 1.1em; }
+.detail-docs p { margin-bottom: 12px; }
+.detail-actions-footer { margin-top: 25px; text-align: right; }
+.close-details-btn.action-btn { /* Réutiliser .action-btn pour consistance */ padding: 8px 22px; background-color: var(--admin-secondary); color: white; font-size: 0.9em; border-radius: 5px; }
+.close-details-btn:hover { background-color: #545b62; }
+
+/* Utilitaires */
+.loading-indicator.admin-card { padding: 40px; text-align: center; }
+.error-message.admin-card { padding: 20px; text-align: center; }
+.no-results-row td { text-align: center; color: var(--admin-secondary); padding: 40px; font-style: italic; }
+.loading-indicator.full-page-loader { display: flex; justify-content: center; align-items: center; min-height: 100vh; font-size: 1.2em; color: var(--admin-secondary); }
+.spinner-large { width: 2em; height: 2em; border: 3px solid rgba(79, 70, 229, 0.2); border-radius: 50%; border-top-color: var(--admin-primary); animation: spinAdmin 1s linear infinite; }
+@keyframes spinAdmin { to { transform: rotate(360deg); } }
+
+
+/* Pagination */
+.admin-pagination-controls { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--admin-border-color); }
+.admin-pagination-controls button { padding: 9px 16px; margin: 0 6px; border: 1px solid var(--admin-border-color); background-color: var(--admin-white); color: var(--admin-primary); cursor: pointer; border-radius: 6px; transition: all 0.2s ease; font-size: 0.9rem; font-weight: 500; }
+.admin-pagination-controls button:disabled { opacity: 0.5; cursor: not-allowed; background-color: var(--admin-light-gray); border-color: var(--admin-border-color); color: var(--admin-secondary); }
+.admin-pagination-controls button:not(:disabled):hover { background-color: var(--admin-bg); border-color: var(--admin-primary); }
+.admin-pagination-controls button i { font-size: 0.8em; }
+.admin-pagination-controls span { margin: 0 15px; color: var(--admin-text-secondary); font-size: 0.95rem; }
+.admin-pagination-controls span strong { color: var(--admin-text-primary); }
+
+
+/* Responsive (Hérite de DashboardAdmin_Modern.css, mais ajustements spécifiques) */
+@media (max-width: 1200px) { /* Styles spécifiques pour sidebar cachée si .admin-dashboard-layout n'a pas sidebar-open */ }
+@media (max-width: 992px) {
+    .admin-data-table.candidatures th:nth-child(3), /* Cacher Entreprise */
+    .admin-data-table.candidatures td:nth-child(3),
+    .admin-data-table.candidatures th:nth-child(4), /* Cacher Date Réception */
+    .admin-data-table.candidatures td:nth-child(4) {
+        display: none;
+    }
+    .admin-cand-detail-row td {
+        /* Ajuster colspan si des colonnes sont cachées dans la ligne principale */
+        /* Initial: 6 colonnes. Si 2 cachées -> colSpan=4 */
+        /* Ce colspan est déjà dans le JSX, mais on pourrait l'ajuster dynamiquement ou ici */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Styles de DashboardAdmin_Modern.css pour la table responsive s'appliquent */
+    /* Cacher encore plus de colonnes si nécessaire pour la table .candidatures */
+     .admin-data-table.candidatures td[data-label="Entreprise"],
+     .admin-data-table.candidatures td[data-label="Date Réception"] {
+        display: none; /* Déjà caché via nth-child, mais peut être plus explicite */
+    }
+    .admin-data-table.candidatures td[data-label="Actions"] {
+        flex-wrap: wrap; /* Permettre aux boutons de passer à la ligne */
+        justify-content: flex-start; /* Aligner à gauche sur mobile */
+        gap: 5px;
+    }
+    .admin-action-btn {
+        margin: 2px; /* Moins de marge entre boutons */
+    }
+    .detail-grid { grid-template-columns: 1fr; } /* Détails en une colonne */
+}

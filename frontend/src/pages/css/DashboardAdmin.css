@@ -1,0 +1,514 @@
+/* css/DashboardAdmin.css */
+
+/* Variables CSS pour une personnalisation facile */
+:root {
+  --sidebar-width: 260px;
+  --sidebar-width-collapsed: 0px; /* Utile si on voulait la "cacher" en décalant le contenu */
+  --sidebar-bg-color: #2c3e50; /* Bleu nuit/gris foncé */
+  --sidebar-text-color: #ecf0f1; /* Gris clair */
+  --sidebar-link-hover-bg: #34495e; /* Un peu plus clair que le fond */
+  --sidebar-link-active-bg: #46627f; /* Bleu un peu plus vif pour l'actif */
+  --sidebar-brand-color: #ffffff;
+  --top-navbar-height: 60px;
+  --main-content-bg: #f4f6f9; /* Fond clair pour le contenu principal */
+  --card-bg: #ffffff;
+  --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+  --primary-accent-color: #3498db; /* Bleu pour les accents */
+  --text-color-dark: #333;
+  --text-color-light: #777;
+  --border-color: #e0e0e0;
+  --mobile-breakpoint: 768px; /* Point de rupture pour le mode mobile */
+}
+
+/* Réinitialisation de base et styles globaux */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--main-content-bg);
+  color: var(--text-color-dark);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+/* --- Layout Principal --- */
+.admin-dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  position: relative; /* Pour l'overlay */
+}
+
+/* --- Sidebar --- */
+.admin-sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--sidebar-bg-color);
+  color: var(--sidebar-text-color);
+  display: flex;
+  flex-direction: column;
+  position: fixed; /* Fixe sur desktop */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000; /* Au-dessus du contenu */
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  /* Aligner avec la hauteur de la navbar */
+  box-sizing: border-box;
+  background-color: var(--sidebar-text-color) ;
+}
+
+
+
+.sidebar-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--sidebar-brand-color);
+  flex-grow: 1; /* Pour pousser le bouton de fermeture à droite */
+}
+
+.sidebar-nav {
+  flex-grow: 1; /* Prend l'espace restant */
+  overflow-y: auto; /* Si beaucoup de liens */
+  padding-top: 45px;
+
+}
+
+.sidebar-nav ul li a {
+  display: flex;
+  align-items: center;
+  padding: 22px 30px;
+  color: var(--sidebar-text-color);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.sidebar-nav ul li a i {
+  margin-right: 12px;
+  width: 20px; /* Pour alignement */
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.sidebar-nav ul li a:hover {
+  background-color: var(--sidebar-link-hover-bg);
+}
+
+.sidebar-nav ul li a.active {
+  background-color: var(--sidebar-link-active-bg);
+  font-weight: 600;
+  border-left: 3px solid var(--primary-accent-color);
+  padding-left: 17px; /* 20px - 3px */
+}
+
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-logout-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 15px;
+  background-color: var(--sidebar-link-hover-bg);
+  color: var(--sidebar-text-color);
+  border-radius: 5px;
+  text-align: left;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-logout-button i {
+  margin-right: 10px;
+  font-size: 1.1em;
+}
+
+.sidebar-logout-button:hover {
+  background-color: var(--primary-accent-color);
+}
+
+/* Bouton de fermeture de la sidebar (visible sur mobile dans la sidebar) */
+.sidebar-close-btn {
+    display: none; /* Caché par défaut */
+    color: var(--sidebar-text-color);
+    font-size: 1.5rem;
+    padding: 5px;
+    line-height: 1;
+}
+
+
+/* --- Conteneur Principal et Navbar Supérieure --- */
+.admin-main-container {
+  flex-grow: 1;
+  margin-left: var(--sidebar-width); /* Espace pour la sidebar fixe */
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.admin-top-navbar {
+  height: var(--top-navbar-height);
+  background-color: var(--card-bg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  position: sticky; /* Colle en haut lors du scroll */
+  top: 0;
+  z-index: 900; /* En dessous de la sidebar, mais au-dessus du contenu */
+  /* Transition pour quand la sidebar est cachée sur grand écran (si on implémente ça) */
+  /* left: var(--sidebar-width); 
+     right: 0;
+     transition: left 0.3s ease-in-out; */
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-toggle-btn { /* Bouton burger pour mobile */
+  display: none; /* Caché sur desktop */
+  font-size: 1.5rem;
+  color: var(--text-color-dark);
+  margin-right: 15px;
+  padding: 5px;
+}
+
+.navbar-page-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-color-dark);
+  margin: 0;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-profile {
+  display: flex;
+  align-items: center;
+  color: var(--text-color-dark);
+}
+
+.admin-icon {
+  font-size: 1.3rem;
+  margin-right: 8px;
+  color: var(--primary-accent-color);
+}
+
+.navbar-username {
+  font-weight: 500;
+}
+
+
+/* --- Contenu Principal --- */
+.admin-main-content {
+  padding: 25px;
+  background-color: var(--main-content-bg);
+  flex-grow: 1; /* S'assure qu'il remplit l'espace vertical */
+}
+
+/* Carte générique */
+.admin-card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+/* --- Responsive (Mobile et Tablette) --- */
+@media (max-width: /*var(--mobile-breakpoint)*/ 992px) { /* J'utilise 992px pour que le toggle soit aussi sur tablette */
+  .admin-sidebar {
+    transform: translateX(-100%); /* Sidebar cachée par défaut */
+    /* position: fixed; déjà fait */
+    /* z-index: 1000; déjà fait */
+  }
+
+  .admin-dashboard-layout.sidebar-open .admin-sidebar {
+    transform: translateX(0); /* Sidebar visible */
+  }
+
+  .admin-main-container {
+    margin-left: 0; /* Le contenu prend toute la largeur */
+  }
+  
+  /* La navbar top ne doit pas se décaler car le contenu ne se décale plus */
+  /* .admin-top-navbar {
+    left: 0; 
+  } */
+
+  .sidebar-toggle-btn { /* Bouton burger visible */
+    display: block;
+  }
+
+  /* Afficher le bouton de fermeture dans la sidebar sur mobile */
+  .sidebar-close-btn {
+    display: block;
+    margin-left: auto; /* Le pousse à droite */
+  }
+
+  /* Overlay pour fermer la sidebar en cliquant à côté */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* En dessous de la sidebar, au-dessus du reste */
+    display: none; /* Caché par défaut */
+  }
+
+  .admin-dashboard-layout.sidebar-open .sidebar-overlay {
+    display: block; /* Visible quand la sidebar est ouverte */
+  }
+}
+
+
+/* --- Styles spécifiques aux sections (stats, table) --- */
+
+/* Section Stats */
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.admin-stat-card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.admin-stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.stat-icon-background {
+  font-size: 2rem;
+  padding: 15px;
+  border-radius: 50%;
+  margin-right: 20px;
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-total    { background-color: #3498db; } /* Bleu */
+.icon-etudiant { background-color: #2ecc71; } /* Vert */
+.icon-responsable { background-color: #e67e22; } /* Orange */
+.icon-offre    { background-color: #9b59b6; } /* Violet */
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-color-light);
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-color-dark);
+}
+
+/* Section Tableau Utilisateurs */
+.admin-user-table-section {
+  /* Utilise .admin-card déjà défini */
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Pour mobile */
+  gap: 10px; /* Pour mobile */
+}
+
+.table-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.table-search-container {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-color-light);
+  font-size: 0.9rem;
+}
+
+.table-search-input {
+  padding: 8px 12px 8px 35px; /* Espace pour l'icône */
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  min-width: 220px;
+  transition: border-color 0.2s ease;
+}
+.table-search-input:focus {
+  outline: none;
+  border-color: var(--primary-accent-color);
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.table-responsive-admin {
+  overflow-x: auto; /* Permet le scroll horizontal sur petit écran si le tableau est trop large */
+}
+
+.admin-data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-data-table th,
+.admin-data-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.9rem;
+}
+
+.admin-data-table th {
+  background-color: #f8f9fa; /* Fond légèrement gris pour l'en-tête */
+  font-weight: 600;
+  color: var(--text-color-dark);
+}
+
+
+
+.user-type-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #fff;
+  text-transform: capitalize;
+}
+.type-etudiant    { background-color: var(--primary-accent-color); }
+.type-responsable { background-color: #e67e22; } /* Orange */
+.type-n\/a         { background-color: #7f8c8d; } /* Gris */
+
+
+.admin-action-btn {
+  padding: 6px 8px;
+  margin-right: 5px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #fff;
+  transition: opacity 0.2s ease;
+}
+.admin-action-btn:hover { opacity: 0.8; }
+.admin-action-btn.view   { background-color: #27ae60; } /* Vert */
+.admin-action-btn.delete { background-color: #c0392b; } /* Rouge */
+.admin-action-btn i { font-size: 0.9em; } /* Ajuster si les icônes sont trop grandes/petites */
+
+
+.loading-row td, .no-results-row td {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-color-light);
+}
+
+/* Pagination */
+.admin-pagination-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+}
+
+.admin-pagination-controls button {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--primary-accent-color);
+  padding: 8px 12px;
+  margin: 0 5px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.admin-pagination-controls button:hover:not(:disabled) {
+  background-color: var(--primary-accent-color);
+  color: #fff;
+}
+.admin-pagination-controls button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.admin-pagination-controls span {
+  font-size: 0.9rem;
+  color: var(--text-color-light);
+}
+.admin-pagination-controls strong {
+  color: var(--text-color-dark);
+}
+
+/* Message d'erreur */
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.error-message button {
+    background-color: #721c24;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.error-message button:hover {
+    background-color: #5a161d;
+}

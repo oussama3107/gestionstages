@@ -1,0 +1,124 @@
+/* src/css/DashboardEtudiant_Modern.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+  --etu-primary-color: #007bff;  /* Bleu dynamique */
+  --etu-secondary-color: #6c757d; /* Gris pour texte secondaire */
+  --etu-accent-color: #17a2b8;   /* Cyan comme accent */
+  --etu-success-color: #28a745;
+  --etu-danger-color: #dc3545;
+  --etu-light-bg: #f8f9fc;       /* Fond de page clair */
+  --etu-white-bg: #ffffff;
+  --etu-card-border: #e3e9f3;
+  --etu-card-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --etu-text-dark: #343f52;      /* Texte principal foncé */
+  --etu-text-light: #f1f3f5;
+  --etu-font-primary: 'Poppins', sans-serif;
+  --etu-font-secondary: 'Open Sans', sans-serif;
+  --etu-card-radius: 10px;
+}
+
+/* --- Styles Globaux --- */
+body { margin: 0; font-family: var(--etu-font-secondary); background-color: var(--etu-light-bg); color: var(--etu-text-dark); line-height: 1.65; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+.etu-dashboard-page { display: flex; flex-direction: column; min-height: 100vh; }
+
+/* --- Navbar Étudiant Moderne --- */
+.etu-navbar { display: flex; justify-content: space-between; align-items: center; height: 70px; padding: 0 40px; background-color: var(--etu-white-bg); box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--etu-card-border); }
+.navbar-brand { display: flex; align-items: center; text-decoration: none; }
+.navbar-brand .navbar-app-name { font-family: var(--etu-font-primary); font-size: 1.25rem; font-weight: 600; color: var(--etu-primary-color); }
+.navbar-links-center { display: flex; gap: 30px; }
+.navbar-links-center a { text-decoration: none; color: var(--etu-text-secondary); font-weight: 600; font-size: 0.95rem; padding: 8px 12px; border-radius: 6px; transition: color 0.2s ease, background-color 0.2s ease; }
+.navbar-links-center a:hover { color: var(--etu-primary-color); background-color: #e9f2ff; }
+.navbar-links-center a.active { color: var(--etu-white-bg); background-color: var(--etu-primary-color); }
+.navbar-actions { display: flex; align-items: center; gap: 20px; }
+.navbar-user-info { display: flex; align-items: center; gap: 10px; }
+.user-greeting { font-size: 0.9rem; color: var(--etu-text-secondary); font-weight: 500; }
+.logout-button { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; background-color: transparent; color: var(--etu-danger-color); border: 1px solid var(--etu-danger-color); border-radius: 6px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.2s ease; }
+.logout-button:hover { background-color: var(--etu-danger-color); color: var(--etu-white-bg); }
+.logout-button:disabled { /* ... */ }
+
+/* --- Contenu Principal --- */
+.etu-dashboard-content { padding: 35px 40px; flex-grow: 1; }
+.etu-profile-header { display: flex; align-items: center; gap: 30px; margin-bottom: 40px; background-color: var(--etu-white-bg); padding: 30px; border-radius: var(--etu-card-radius); box-shadow: var(--etu-card-shadow); border: 1px solid var(--etu-card-border); }
+.etu-profile-avatar-container { flex-shrink: 0; width: 130px; height: 130px; border-radius: 50%; background-color: var(--etu-light-gray); display: flex; justify-content: center; align-items: center; overflow: hidden; border: 4px solid var(--etu-white-bg); box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+.etu-profile-photo { width: 100%; height: 100%; object-fit: cover; }
+.etu-profile-initials-big { font-size: 3.5em; font-weight: 700; color: var(--etu-primary-color); }
+.etu-profile-summary h1 { margin-top: 0; margin-bottom: 5px; font-family: var(--etu-font-primary); font-size: 1.8rem; color: var(--etu-text-dark); }
+.etu-profile-email { font-size: 1rem; color: var(--etu-text-secondary); margin-bottom: 20px; }
+.etu-action-button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease; border: none; cursor: pointer; }
+.etu-action-button.primary { background-color: var(--etu-primary-color); color: var(--etu-white-bg); box-shadow: 0 2px 5px rgba(0,123,255,0.2); }
+.etu-action-button.primary:hover { background-color: var(--etu-primary-dark); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,123,255,0.3); }
+.etu-action-button.secondary { background-color: var(--etu-accent-color); color: var(--etu-white-bg); box-shadow: 0 2px 5px rgba(23,162,184,0.2); }
+.etu-action-button.secondary:hover { background-color: #138496; transform: translateY(-1px); box-shadow: 0 4px 8px rgba(23,162,184,0.3); }
+
+
+/* --- Grille Layout --- */
+.etu-dashboard-grid { display: grid; grid-template-columns: 320px 1fr; gap: 30px; }
+.etu-info-sidebar { display: flex; flex-direction: column; gap: 25px; }
+
+/* Style Cartes */
+.etu-dashboard-card { background-color: var(--etu-white-bg); border-radius: var(--etu-card-radius); box-shadow: var(--etu-card-shadow); padding: 25px; border: 1px solid var(--etu-card-border); }
+.etu-dashboard-card h2 { display: flex; align-items: center; gap: 10px; margin-top: 0; margin-bottom: 20px; font-size: 1.2rem; color: var(--etu-text-dark); font-weight: 600; padding-bottom: 12px; border-bottom: 1px solid var(--etu-medium-gray); }
+.etu-dashboard-card h2 i { color: var(--etu-primary-color); font-size: 1.1em; }
+.etu-dashboard-card p { margin-bottom: 12px; font-size: 0.95em; line-height: 1.6; color: var(--etu-text-secondary); }
+.etu-dashboard-card p strong { color: var(--etu-text-dark); font-weight: 600; margin-right: 5px; }
+.etu-dashboard-card p span { color: var(--etu-text-dark); } /* Valeur */
+.etu-documents-card .etu-doc-link { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.etu-documents-card .file-link { color: var(--etu-link-color); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+.etu-documents-card .file-link:hover { text-decoration: underline; }
+.etu-documents-card .file-link i { font-size: 1.1em; color: var(--etu-link-color); opacity: 0.8; }
+.etu-documents-card span i { color: var(--etu-text-muted); } /* Pour icône fichier manquant */
+
+
+/* Zone Principale Droite */
+.etu-main-actions-area { display: flex; flex-direction: column; gap: 30px; }
+.etu-action-card { /* Utilise .etu-dashboard-card */ display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; /* Hauteur minimale carte action */ }
+.etu-action-card h2 { border-bottom: none; padding-bottom: 0; margin-bottom: 10px; }
+.etu-action-card p { flex-grow: 1; margin-bottom: 20px; }
+
+/* Réutiliser styles de Home.css si existants */
+.quick-actions-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
+.info-card { border-left: 4px solid var(--etu-accent-color); text-decoration: none; color: inherit; transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; }
+.info-card:hover { transform: translateY(-3px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+.info-card h4 { margin-top: 0; margin-bottom: 8px; font-size: 1.1em; font-weight: 600; color: var(--etu-text-dark); }
+.info-card p { font-size: 0.9em; color: var(--etu-text-secondary); margin-bottom: 15px; }
+.details-link-btn { display: inline-block; padding: 7px 16px; font-size: 0.9em; background-color: var(--etu-primary-color); color: white; border-radius: 5px; text-decoration: none; transition: background-color 0.2s ease; }
+.details-link-btn:hover { background-color: var(--etu-primary-dark); }
+.all-offers-card { background-color: var(--etu-light-gray); display: flex; justify-content: center; align-items: center; text-align: center; border-style: dashed; border-color: var(--etu-medium-gray); min-height: 150px; }
+.view-all-link { text-decoration: none; font-weight: 600; color: var(--etu-primary-color); font-size: 1.1em; display: flex; align-items: center; gap: 8px;}
+.view-all-link:hover { color: var(--etu-primary-dark); }
+.stat-card { text-align: center; border-left: 4px solid var(--etu-secondary-color); }
+.stat-card h4 { margin-top: 0; margin-bottom: 5px; font-size: 1em; color: var(--etu-text-secondary); }
+.stat-card h5 { margin: 0; font-size: 1.8em; color: var(--etu-primary-color); font-weight: 700; }
+
+
+/* Utilitaires */
+.loading-container, .etu-loading-container { text-align: center; padding: 50px; font-size: 1.1em; color: var(--etu-dark-gray); flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.error-container, .etu-error-container { text-align: center; padding: 40px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.etu-error-container p strong { color: var(--etu-danger-color); }
+.etu-error-container .etu-action-button.primary { margin-top: 15px; }
+
+
+/* Responsive */
+@media (max-width: 992px) {
+    .etu-dashboard-grid { grid-template-columns: 280px 1fr; gap: 25px; }
+    .etu-dashboard-content { padding: 25px; }
+    .etu-navbar { padding: 0 25px; }
+    .navbar-links-center { display: none; }
+    .navbar-brand .navbar-app-name { display: none; }
+}
+@media (max-width: 768px) {
+  .etu-dashboard-grid { grid-template-columns: 1fr; }
+  .etu-profile-sidebar { order: 0; }
+  .etu-main-actions-area { order: 1; margin-top: 25px; }
+  .etu-navbar { padding: 0 15px; }
+  .etu-dashboard-content { padding: 20px; }
+  .etu-profile-header { flex-direction: column; text-align: center; }
+  .etu-profile-avatar-container { margin-bottom: 15px; }
+}
+@media (max-width: 576px) {
+    .quick-actions-group { grid-template-columns: 1fr; }
+    .etu-profile-header h1 { font-size: 1.5rem; }
+    .etu-profile-email { font-size: 0.9rem; }
+    .etu-action-button { width: 100%; text-align: center; margin-bottom: 10px; }
+}

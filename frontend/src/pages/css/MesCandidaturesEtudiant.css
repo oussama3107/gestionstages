@@ -1,0 +1,154 @@
+/* src/css/MesCandidaturesEtudiant.css */
+
+/* --- Variables (Hériter ou spécifiques) --- */
+:root {
+  --cand-etu-primary: #0d6efd;
+  --cand-etu-secondary: #6c757d;
+  --cand-etu-success: #198754;
+  --cand-etu-info: #0dcaf0;
+  --cand-etu-warning: #ffc107;
+  --cand-etu-danger: #dc3545;
+  --cand-etu-light-gray: #f8f9fa;
+  --cand-etu-medium-gray: #e9ecef;
+  --cand-etu-dark-gray: #495057;
+  --cand-etu-background: #f8f9fc; /* Fond légèrement différent */
+  --cand-etu-white: #ffffff;
+  --cand-etu-text: #212529;
+  --cand-etu-card-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --cand-etu-card-border-radius: 6px;
+  --cand-etu-border-color: #dee2e6;
+  --cand-etu-link-color: #0a58ca;
+}
+
+/* --- Page Layout --- */
+.mes-candidatures-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--cand-etu-background);
+}
+
+/* --- Navbar (Réutiliser .etudiant-navbar) --- */
+.etudiant-navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 35px; background-color: var(--cand-etu-white);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06); border-bottom: 1px solid var(--cand-etu-medium-gray);
+    position: sticky; top: 0; z-index: 1000;
+}
+
+.navbar-links { display: flex; gap: 28px; }
+.navbar-links a { text-decoration: none; color: var(--cand-etu-dark-gray); font-weight: 500; padding-bottom: 8px; border-bottom: 3px solid transparent; transition: color 0.3s ease, border-color 0.3s ease; }
+.navbar-links a:hover, .navbar-links a.active { color: var(--cand-etu-primary); border-bottom-color: var(--cand-etu-primary); }
+.navbar-actions .logout-button { padding: 9px 20px; background-color: var(--cand-etu-danger); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease; }
+.navbar-actions .logout-button:hover { background-color: #bb2d3b; }
+
+
+/* --- Contenu Principal --- */
+.mes-candidatures-content {
+  padding: 30px 40px;
+  flex-grow: 1;
+  max-width: 900px; /* Limiter largeur pour la liste */
+  margin: 0 auto; /* Centrer */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mes-candidatures-content h1 {
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: var(--cand-etu-primary);
+  font-size: 1.9em;
+  font-weight: 600;
+}
+
+/* Message d'action */
+.action-message { padding: 11px 18px; margin-bottom: 25px; border-radius: 4px; text-align: center; font-weight: 500; font-size: 0.95em; }
+.action-message.success { background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; }
+.action-message.error { background-color: #f8d7da; color: #842029; border: 1px solid #f5c2c7; }
+
+/* --- Liste des Candidatures --- */
+.candidatures-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Style carte commun */
+.card-style {
+    background-color: var(--cand-etu-white);
+    border-radius: var(--cand-etu-card-border-radius);
+    box-shadow: var(--cand-etu-card-shadow);
+    border: 1px solid var(--cand-etu-border-color);
+    overflow: hidden;
+}
+
+.candidature-card {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.candidature-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--cand-etu-light-gray);
+    border-bottom: 1px solid var(--cand-etu-border-color);
+}
+.candidature-card-header h3 { margin: 0; font-size: 1.1em; color: var(--cand-etu-text); font-weight: 600; }
+
+/* Badge statut */
+.application-status-badge { font-size: 0.8em; font-weight: bold; padding: 5px 12px; border-radius: 15px; color: var(--cand-etu-white); text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;}
+.status-envoyee { background-color: var(--cand-etu-info); color: #fff;}
+.status-vue { background-color: var(--cand-etu-secondary); }
+.status-entretien { background-color: var(--cand-etu-warning); color: #333; }
+.status-acceptee { background-color: var(--cand-etu-success); }
+.status-refusee { background-color: var(--cand-etu-danger); }
+.status-retiree { background-color: var(--cand-etu-dark-gray); }
+.status-inconnu { background-color: var(--cand-etu-secondary); }
+
+
+.candidature-card-body { padding: 15px 20px; flex-grow: 1; }
+.candidature-company, .candidature-location, .candidature-date { font-size: 0.9em; color: var(--cand-etu-secondary); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.candidature-company i, .candidature-location i, .candidature-date i { color: var(--cand-etu-primary); opacity: 0.8; width: 15px; text-align: center; }
+.cand-motivation-preview { font-size: 0.9em; font-style: italic; color: var(--cand-etu-secondary); margin-top: 8px; border-left: 3px solid var(--cand-etu-medium-gray); padding-left: 10px;}
+.cand-motivation-preview strong { font-style: normal; color: var(--cand-etu-dark-gray); }
+
+
+.candidature-card-footer {
+    padding: 10px 20px;
+    background-color: var(--cand-etu-light-gray);
+    border-top: 1px solid var(--cand-etu-border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: auto;
+}
+
+.view-offer-link, .withdraw-button {
+    padding: 7px 15px; font-size: 0.9em; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: all 0.2s ease; border: 1px solid transparent;
+}
+.view-offer-link { background-color: var(--cand-etu-secondary); color: white; border-color: var(--cand-etu-secondary); }
+.view-offer-link:hover { background-color: #5a6268; border-color: #5a6268; }
+.withdraw-button { background-color: var(--cand-etu-danger); color: white; border-color: var(--cand-etu-danger); }
+.withdraw-button:hover:not(:disabled) { background-color: #bb2d3b; border-color: #bb2d3b; }
+.withdraw-button:disabled { background-color: var(--cand-etu-medium-gray); border-color: var(--cand-etu-medium-gray); color: #777; cursor: not-allowed;}
+.withdraw-button i.fa-spinner { animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+
+/* Utilitaires (repris) */
+.loading-indicator { text-align: center; padding: 40px; font-size: 1.1em; color: var(--cand-etu-dark-gray); }
+.error-message { color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 15px 20px; border-radius: 5px; margin-bottom: 20px; text-align: center; }
+.no-results-message { text-align: center; color: var(--cand-etu-secondary); padding: 40px 20px; font-style: italic; background-color: var(--cand-etu-white); border-radius: var(--cand-etu-card-border-radius); box-shadow: var(--cand-etu-card-shadow); border: 1px solid var(--cand-etu-border-color); margin-top: 20px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .mes-candidatures-content { padding: 20px; max-width: 100%; }
+    .etudiant-navbar { padding: 10px 20px; }
+    .navbar-links { display: none; }
+    .candidature-card-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .application-status-badge { align-self: flex-start; } /* Badge sous le titre */
+    .candidature-card-footer { justify-content: center; }
+}

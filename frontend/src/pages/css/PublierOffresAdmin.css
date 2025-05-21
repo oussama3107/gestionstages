@@ -1,0 +1,137 @@
+/* src/css/PublierOffresAdmin.css */
+
+/* --- Variables (Peuvent hériter de DashboardAdmin.css ou être spécifiques) --- */
+:root {
+  --admin-offre-primary: #5e72e4; /* Violet/Bleu Admin */
+  --admin-offre-secondary: #8898aa; /* Gris clair */
+  --admin-offre-success: #2dce89;  /* Vert Admin */
+  --admin-offre-danger: #f5365c;   /* Rouge/Rose Admin */
+  --admin-offre-warning: #fb6340;  /* Orange Admin */
+  --admin-offre-info: #11cdef;     /* Cyan Admin */
+  --admin-offre-text: #525f7f;
+  --admin-offre-light-gray: #f7fafc;
+  --admin-offre-border: #dee2e6;
+  --admin-offre-white: #ffffff;
+  --admin-offre-bg: #f6f9fc; /* Fond général */
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  /* Utiliser --sidebar-width de DashboardAdmin.css si importé */
+  --sidebar-width: 260px; /* Fallback */
+}
+
+/* --- Layout Principal (Utilise Sidebar de DashboardAdmin.css si importé) --- */
+.publier-offres-admin-page {
+  display: flex;
+  min-height: 100vh;
+}
+.admin-actions-cell1{
+  position: relative;
+  left: 90px;
+}
+/* Contenu principal (si sidebar fixe) */
+.publier-offres-content {
+  flex-grow: 1;
+  padding: 30px 40px; /* Augmenter padding horizontal */
+  margin-left: var(--sidebar-width);
+  background-color: var(--admin-offre-bg);
+}
+
+.publier-offres-content h1 {
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: #32325d;
+  font-weight: 600;
+  font-size: 1.8em; /* Taille titre */
+}
+
+/* Barre de Filtres */
+.filters-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px; /* Plus de padding */
+    background-color: var(--admin-offre-white);
+    border-radius: 6px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 30px;
+    border: 1px solid var(--admin-offre-border);
+}
+
+.admin-search-container {
+    position: relative;
+    flex-grow: 1;
+    min-width: 300px; /* Plus large */
+}
+.admin-search-container .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--admin-offre-secondary); }
+.admin-search-container .search-input { width: 100%; padding: 11px 18px 11px 45px; border: 1px solid var(--admin-offre-border); border-radius: 4px; box-sizing: border-box; font-size: 1em; }
+.admin-search-container .search-input:focus { outline: none; border-color: var(--admin-offre-primary); box-shadow: 0 0 0 3px rgba(94, 114, 228, 0.15); }
+
+.admin-filter-group { display: flex; align-items: center; gap: 10px; }
+.admin-filter-group label { font-size: 0.95em; color: var(--admin-offre-text); font-weight: 500; white-space: nowrap; }
+.admin-filter-group select { padding: 10px 15px; border: 1px solid var(--admin-offre-border); border-radius: 4px; font-size: 1em; min-width: 180px; background-color: var(--admin-offre-white); cursor: pointer; }
+.admin-filter-group select:focus { outline: none; border-color: var(--admin-offre-primary); box-shadow: 0 0 0 3px rgba(94, 114, 228, 0.15); }
+
+
+/* Message d'action */
+.action-message { padding: 11px 18px; margin-bottom: 25px; border-radius: 4px; text-align: center; font-weight: 500; font-size: 0.95em; }
+.action-message.success { background-color: #e9fbf1; color: var(--admin-offre-success); border: 1px solid #b3e9cd; }
+.action-message.error { background-color: #fdecea; color: var(--admin-offre-danger); border: 1px solid #f8c9d3; }
+
+/* --- Tableau des Offres --- */
+.table-responsive { overflow-x: auto; background-color: var(--admin-offre-white); border-radius: 8px; box-shadow: var(--card-shadow); border: 1px solid var(--admin-offre-border); }
+.admin-offre-table { width: 100%; border-collapse: collapse; }
+.admin-offre-table thead tr { border-bottom: 2px solid var(--admin-offre-border); }
+.admin-offre-table th { background-color: var(--admin-offre-light-gray); color: var(--admin-offre-secondary); text-align: left; padding: 14px 18px; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.6px; white-space: nowrap; }
+.admin-offre-table th:last-child { text-align: right; } /* Aligner header Actions à droite */
+.admin-offre-table tbody tr:not(.admin-offre-detail-row):hover { background-color: #f6f9fc; }
+.admin-offre-table td { padding: 14px 18px; border-bottom: 1px solid var(--admin-offre-border); vertical-align: middle; font-size: 0.95em; color: var(--admin-offre-text); }
+
+/* Badge de Statut */
+.offer-status-badge { font-size: 0.8em; font-weight: bold; padding: 5px 12px; border-radius: 15px; color: var(--admin-offre-white); text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; }
+.status-en_attente { background-color: var(--admin-offre-warning); color: var(--admin-offre-white); }
+.status-publiee { background-color: var(--admin-offre-success); }
+.status-brouillon { background-color: var(--admin-offre-info); }
+.status-refusee, .status-archivee { background-color: var(--admin-offre-danger); }
+.status-inconnu { background-color: var(--admin-offre-secondary); }
+
+/* Boutons d'action */
+.admin-offre-table td[data-label="Actions"] { white-space: nowrap; text-align: right; }
+.action-btn { border: none; background: none; padding: 6px 8px; margin: 0 2px; cursor: pointer; font-size: 1.2em; /* Icônes un peu plus grandes */ vertical-align: middle; transition: color 0.2s ease, transform 0.2s ease, opacity 0.2s ease; border-radius: 50%; /* Boutons ronds */ width: 32px; height: 32px; line-height: 1; display: inline-flex; justify-content: center; align-items: center;}
+.action-btn:hover { transform: scale(1.1); }
+.action-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.action-btn i { margin: 0; } /* Pas besoin de marge dans le bouton rond */
+
+.action-btn.view-btn { color: var(--admin-offre-primary); } .action-btn.view-btn:hover:not(:disabled) { background-color: rgba(94, 114, 228, 0.1); }
+.action-btn.publish-btn { color: var(--admin-offre-success); } .action-btn.publish-btn:hover:not(:disabled) { background-color: rgba(45, 206, 137, 0.1); }
+.action-btn.reject-btn { color: var(--admin-offre-warning); } .action-btn.reject-btn:hover:not(:disabled) { background-color: rgba(251, 99, 64, 0.1); }
+.action-btn.delete-btn { color: var(--admin-offre-danger); } .action-btn.delete-btn:hover:not(:disabled) { background-color: rgba(245, 54, 92, 0.1); }
+
+.admin-data-table {overflow: hidden;}
+
+
+.admin-data-table td[data-label="Actions1"] { white-space: nowrap;position: relative; left: 90px; }
+
+
+/* Ligne Détail */
+.admin-offre-detail-row td { padding: 0; background-color: #fbfbff; border-bottom: 2px solid var(--admin-offre-primary); }
+.admin-offre-detail-content { padding: 25px 30px; }
+.admin-offre-detail-content h4 { margin-top: 0; margin-bottom: 20px; color: var(--admin-offre-primary); font-size: 1.2em; border-bottom: 1px solid var(--admin-offre-border); padding-bottom: 10px; }
+.admin-offre-detail-content p { margin: 0 0 12px 0; font-size: 0.95em; line-height: 1.6; }
+.admin-offre-detail-content p strong { color: #555; min-width: 110px; display: inline-block; font-weight: 600;}
+.close-details-btn { margin-top: 20px; padding: 6px 18px; font-size: 0.9em; background-color: var(--admin-offre-secondary); color: white; border: none; border-radius: 4px; cursor: pointer; }
+.close-details-btn:hover { background-color: #718096; }
+
+/* Pagination (style repris) */
+.pagination-controls { text-align: center; margin-top: 30px; }
+.pagination-button { padding: 9px 16px; margin: 0 6px; border: 1px solid var(--admin-offre-border); background-color: var(--admin-offre-white); color: var(--admin-offre-primary); cursor: pointer; border-radius: 4px; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; font-size: 0.9em; }
+.pagination-button:disabled { opacity: 0.6; cursor: not-allowed; background-color: var(--admin-offre-light-gray); border-color: var(--admin-offre-border); color: var(--admin-offre-secondary); }
+.pagination-button:not(:disabled):hover { background-color: #e9ecef; border-color: #adb5bd; }
+.page-info { margin: 0 15px; color: var(--admin-offre-text); font-size: 0.95em; vertical-align: middle; }
+
+/* Utilitaires (style repris) */
+.loading-indicator { text-align: center; padding: 40px; font-size: 1.1em; color: var(--admin-offre-secondary); }
+.error-message { color: var(--admin-offre-danger); background-color: #fdecea; border: 1px solid #f8c9d3; padding: 15px 20px; border-radius: 5px; margin-bottom: 20px; text-align: center; }
+.no-results-message { text-align: center; color: var(--admin-offre-secondary); padding: 40px; font-style: italic; }
+
+/* Responsive */
+@media (max-width: 992px) { .publier-offres-content { margin-left: 200px; /* Ajuster si sidebar admin est différent */ } .filters-bar { flex-direction: column; align-items: stretch; } }
+@media (max-width: 768px) { .publier-offres-content { margin-left: 0; padding: 20px; } .admin-offre-table th:nth-child(3), .admin-offre-table td:nth-child(3), .admin-offre-table th:nth-child(5), .admin-offre-table td:nth-child(5) { display: none; } .admin-offre-detail-row td { colSpan: 4; } }

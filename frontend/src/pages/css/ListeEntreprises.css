@@ -1,0 +1,171 @@
+/* --- Variables CSS Globales (à définir ou importer) --- */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --light-bg: #f8f9fa;
+  --white-bg: #ffffff;
+  --dark-text: #212529;
+  --muted-text: #6c757d;
+  --border-color: #dee2e6;
+  --navbar-height: 65px;
+  --border-radius: 6px;
+  --box-shadow-light: 0 2px 5px rgba(0, 0, 0, 0.06);
+  --box-shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --transition-speed: 0.3s;
+}
+
+/* --- Styles Page Globale --- */
+.liste-entreprises-page {
+  background-color: var(--light-bg);
+  min-height: 100vh;
+  font-family: var(--font-family-sans-serif);
+}
+
+/* --- Navbar (Réutiliser les styles de sm-navbar si définis ailleurs) --- */
+.sm-navbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 25px; height: var(--navbar-height); background-color: var(--white-bg);
+  box-shadow: var(--box-shadow-light); position: sticky; top: 0; z-index: 1000;
+  border-bottom: 1px solid var(--border-color);
+}
+.sm-navbar-brand { display: flex; align-items: center; text-decoration: none; }
+
+.sm-nav-links { display: flex; gap: 25px; }
+.sm-nav-links a { text-decoration: none; color: var(--muted-text); font-weight: 500; padding: 5px 0; position: relative; transition: color var(--transition-speed) ease; }
+.sm-nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background-color: var(--primary-color); transition: width var(--transition-speed) ease; }
+.sm-nav-links a:hover, .sm-nav-links a.active { color: var(--primary-color); }
+.sm-nav-links a:hover::after, .sm-nav-links a.active::after { width: 100%; }
+.sm-navbar-actions { display: flex; align-items: center; gap: 15px; }
+.sm-action-link, .sm-action-button { text-decoration: none; padding: 8px 15px; border-radius: var(--border-radius); font-weight: 500; font-size: 0.9em; transition: all var(--transition-speed) ease; cursor: pointer; text-align: center; }
+.sm-action-link.recruiter { color: var(--secondary-color); border: 1px solid var(--border-color); }
+.sm-action-link.recruiter:hover { background-color: var(--light-bg); border-color: var(--secondary-color); color: var(--dark-text); }
+.sm-action-button.login { background-color: var(--primary-color); color: white; border: 1px solid var(--primary-color); }
+.sm-action-button.login:hover { background-color: #0056b3; border-color: #0056b3; }
+
+
+/* --- Conteneur Principal --- */
+.liste-entreprises-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  margin-top: calc(var(--navbar-height) + 30px);
+  padding: 30px 40px;
+}
+
+.liste-entreprises-container h1 {
+  text-align: center;
+  color: var(--dark-text);
+  margin-bottom: 30px; /* Réduit un peu */
+  font-size: 2.1em;
+  font-weight: 600;
+}
+
+/* --- Barre de Recherche --- */
+.filters-section.entreprise-search {
+  display: flex;
+  padding: 15px 20px;
+  background-color: var(--white-bg);
+  border-radius: var(--border-radius);
+  margin-bottom: 25px;
+  box-shadow: var(--box-shadow-light);
+  border: 1px solid var(--border-color);
+}
+.filter-group.search-filter {
+  display: flex; flex-direction: row; align-items: center;
+  flex-grow: 1; gap: 10px;
+}
+.filter-label { font-size: 0.9em; font-weight: 500; color: var(--muted-text); white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+.filter-label svg { margin-right: 5px; }
+.filter-input { padding: 9px 12px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-size: 1em; flex-grow: 1; transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; }
+.filter-input:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); }
+.filter-input::placeholder { color: #adb5bd; opacity: 1; }
+
+/* --- Compteur de Résultats --- */
+.results-count {
+  text-align: left;
+  margin-bottom: 20px;
+  color: var(--muted-text);
+  font-size: 0.95em;
+}
+
+/* --- Messages (Chargement, Erreur, Vide) --- */
+.liste-loading, .liste-error, .liste-empty {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 50px 20px; font-size: 1.1em; color: var(--muted-text);
+  background-color: var(--white-bg); border: 1px solid var(--border-color); border-radius: var(--border-radius);
+  margin-top: 30px; box-shadow: var(--box-shadow-light);
+}
+.liste-loading svg, .liste-error svg, .liste-empty svg { margin-bottom: 15px; color: var(--secondary-color); }
+.liste-error { color: #721c24; border-color: #f5c6cb; background-color: #f8d7da; }
+.liste-error svg { color: #721c24; }
+
+/* --- Grille Entreprises --- */
+.entreprises-grid {
+  list-style: none; padding: 0; margin: 0; display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Légèrement plus large */
+  gap: 30px;
+}
+
+/* --- Carte Entreprise --- */
+.entreprise-card {
+  background-color: var(--white-bg); border: 1px solid var(--border-color);
+  border-radius: var(--border-radius); box-shadow: var(--box-shadow-light);
+  transition: all var(--transition-speed) ease; display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.entreprise-card:hover { box-shadow: var(--box-shadow-medium); transform: translateY(-5px); }
+.entreprise-card.expanded { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); border-color: var(--primary-color); }
+
+/* En-tête Carte */
+.entreprise-card-header { display: flex; align-items: center; padding: 20px; gap: 15px; border-bottom: 1px solid var(--border-color); }
+.entreprise-logo { width: 55px; height: 55px; object-fit: contain; border-radius: 50%; border: 1px solid var(--border-color); background-color: #f8f9fa; flex-shrink: 0; }
+.entreprise-logo-placeholder { width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; background-color: #e9ecef; border-radius: 50%; color: var(--muted-text); font-size: 1.8em; flex-shrink: 0; }
+.entreprise-nom { font-size: 1.25em; font-weight: 600; color: var(--dark-text); margin: 0; line-height: 1.3; }
+
+/* Corps Carte */
+.entreprise-card-body { padding: 20px; flex-grow: 1; }
+.entreprise-info { font-size: 0.95em; color: var(--muted-text); margin-bottom: 9px; display: flex; align-items: center; gap: 8px; }
+.info-icon { width: 1.1em; text-align: center; color: var(--primary-color); flex-shrink: 0; } /* Légèrement plus grande */
+.entreprise-services-summary { font-size: 0.9em; color: var(--muted-text); margin-top: 12px; display: flex; align-items: center; gap: 8px; font-style: italic; }
+
+/* Détails Étendus */
+.entreprise-details-expanded { padding: 20px 0 0 0; margin-top: 15px; border-top: 1px dashed var(--border-color); animation: fadeInDetails 0.4s ease forwards; }
+@keyframes fadeInDetails { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+.entreprise-details-expanded h4 { margin-top: 0; margin-bottom: 15px; font-size: 1em; font-weight: 600; color: var(--dark-text); }
+.entreprise-details-expanded .entreprise-info { margin-bottom: 12px; }
+.entreprise-details-expanded .email a { color: var(--primary-color); text-decoration: none; }
+.entreprise-details-expanded .email a:hover { text-decoration: underline; }
+.entreprise-services-full { margin-top: 15px; }
+.services-title-full { font-size: 0.95em; font-weight: 500; color: var(--dark-text); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.services-list-full { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.service-tag-full { background-color: var(--primary-color); color: white; padding: 4px 10px; border-radius: var(--border-radius); font-size: 0.85em; }
+
+/* Pied de Carte */
+.entreprise-card-footer { padding: 15px 20px; border-top: 1px solid var(--border-color); background-color: #f8f9fa; margin-top: auto; display: flex; justify-content: flex-end; }
+.entreprise-details-button { display: inline-flex; align-items: center; gap: 8px; padding: 8px 15px; background-color: var(--secondary-color); color: white; border: none; border-radius: var(--border-radius); cursor: pointer; font-size: 0.9em; font-weight: 500; transition: background-color var(--transition-speed) ease; }
+.entreprise-details-button:hover { background-color: #5a6268; }
+.entreprise-details-button .btn-icon-right { transition: transform 0.2s ease; } /* Pour l'icône chevron */
+.entreprise-card.expanded .entreprise-details-button .btn-icon-right { /* transform: rotate(180deg); */ /* Géré par changement d'icône */ }
+
+
+/* --- Responsive --- */
+@media (max-width: 992px) {
+    .liste-entreprises-container { padding: 20px; }
+    .entreprises-grid { gap: 20px; }
+}
+@media (max-width: 768px) {
+    .sm-nav-links { display: none; }
+    .sm-navbar { justify-content: space-between; }
+    .liste-entreprises-container h1 { font-size: 1.8em; }
+    .filters-section.entreprise-search { flex-direction: column; align-items: stretch; }
+    .filter-group.search-filter { flex-direction: column; align-items: flex-start; }
+    .filter-label { margin-bottom: 6px; }
+    .entreprises-grid { grid-template-columns: 1fr; gap: 20px;}
+}
+@media (max-width: 480px) {
+    .liste-entreprises-container { padding: 15px; }
+    .entreprise-card-header { flex-direction: column; text-align: center; }
+    .entreprise-logo, .entreprise-logo-placeholder { margin-bottom: 10px; width: 60px; height: 60px; font-size: 2em;}
+    .entreprise-nom { font-size: 1.15em; }
+}

@@ -1,0 +1,112 @@
+/* src/css/VilleSelector.css (Style Dropdown type Register) */
+
+/* Conteneur principal du dropdown (positionné par Home.jsx) */
+.ville-selector-dropdown {
+  position: absolute; /* Positionné par rapport à .location-dropdown-container */
+  top: calc(100% + 4px); /* Juste en dessous de l'input */
+  left: 0;
+  right: 0; /* Prend la largeur du conteneur parent */
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 8px; /* Arrondi */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12); /* Ombre plus prononcée */
+  z-index: 1010; /* Au-dessus de la navbar */
+  max-height: 280px; /* Hauteur maximale */
+  overflow: hidden; /* Gérer le scroll interne */
+  display: flex;
+  flex-direction: column;
+  animation: slideDownDropdown 0.25s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes slideDownDropdown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Contenu interne scrollable */
+.ville-dropdown-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto; /* Scroll sur ce conteneur */
+}
+
+/* Barre de recherche interne */
+.ville-search-bar {
+  padding: 10px 15px;
+  border-bottom: 1px solid #e9ecef;
+  position: sticky;
+  top: 0;
+  background-color: #f8f9fa;
+  z-index: 1;
+}
+.ville-search-bar input[type="search"] { /* Style spécifique */
+  width: 100%;
+  padding: 8px 12px 8px 35px; /* Espace icône */
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 0.9em;
+  box-sizing: border-box;
+}
+.ville-search-bar input[type="search"]:focus {
+    outline: none;
+    border-color: var(--home-primary, #0067f4);
+    box-shadow: 0 0 0 2px var(--home-input-focus-shadow, rgba(0, 123, 255, 0.2));
+}
+.ville-search-bar i.fa-search { /* Positionnement icône */
+  position: absolute;
+  left: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #adb5bd;
+  font-size: 0.9em;
+  pointer-events: none;
+}
+
+/* Liste des villes */
+.ville-list {
+  list-style: none;
+  padding: 8px 0; /* Padding vertical */
+  margin: 0;
+  flex-grow: 1; /* Prend l'espace */
+}
+
+.ville-item {
+  display: flex;
+  align-items: center;
+  padding: 9px 15px; /* Padding pour chaque item */
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.ville-item:hover {
+  background-color: #eef2f7; /* Fond léger au survol */
+}
+
+.ville-item input[type="checkbox"] {
+  margin-right: 12px;
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+  accent-color: var(--home-primary, #0067f4);
+  flex-shrink: 0;
+}
+
+.ville-item label {
+  font-size: 0.95rem;
+  color: #343a40;
+  cursor: pointer;
+  user-select: none;
+  flex-grow: 1;
+}
+
+/* Message si aucune ville */
+.no-results-text {
+    text-align: center;
+    padding: 15px;
+    font-style: italic;
+    color: #6c757d;
+    font-size: 0.9em;
+
+
+}

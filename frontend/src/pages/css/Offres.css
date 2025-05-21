@@ -1,0 +1,158 @@
+/* Base Container */
+.offres-container {
+  padding: 2rem;
+  max-width: 1200px; /* Optional: constrain width */
+  margin: 20px auto; /* Center and add top margin */
+  font-family: 'Inter', 'Segoe UI', sans-serif; /* Example font */
+}
+
+.offres-container h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #212529;
+  text-align: center;
+}
+
+/* Add Offer Button */
+.ajouter-button {
+  background-color: #198754; /* Green */
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  margin-bottom: 1.5rem; /* More space below button */
+  cursor: pointer;
+  border-radius: 6px;
+  text-decoration: none; /* Remove underline from Link */
+  display: inline-block; /* Correct display for Link */
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.ajouter-button:hover,
+.ajouter-button:focus {
+  background-color: #157347; /* Darker green */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  outline: none;
+}
+
+
+/* Responsive Table Wrapper */
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto; /* Enable horizontal scroll on small screens */
+  border: 1px solid #dee2e6; /* Add border around scroll area */
+  border-radius: 8px; /* Match table radius */
+  margin-top: 1rem;
+}
+
+/* Table Styling */
+.offres-table {
+  width: 100%;
+  border-collapse: collapse; /* Use collapse for cleaner borders */
+  background-color: #fff;
+  border-radius: 8px; /* Rounded corners for the table */
+  /* Remove border from table itself if wrapper has one */
+  /* border: 1px solid #dee2e6; */
+  min-width: 800px; /* Minimum width before scroll kicks in */
+}
+
+.offres-table th,
+.offres-table td {
+  border-bottom: 1px solid #dee2e6; /* Use bottom borders */
+  padding: 0.8rem 1rem; /* Adjust padding */
+  text-align: left;
+  font-size: 0.9rem; /* Adjust font size */
+  vertical-align: middle; /* Align content vertically */
+}
+/* Remove border from last row's cells */
+.offres-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.offres-table th {
+  background-color: #f8f9fa; /* Lighter header background */
+  font-weight: 600; /* Bolder headers */
+  color: #495057;
+  font-size: 0.95rem;
+}
+
+/* Zebra striping (optional) */
+.offres-table tbody tr:nth-child(even) {
+  background-color: #fdfdfe;
+}
+.offres-table tbody tr:hover {
+  background-color: #f1f5f9; /* Subtle hover */
+}
+
+/* Service Badges */
+.service-badge {
+  display: inline-block;
+  background-color: #e0f3ff; /* Light blue */
+  color: #0056b3; /* Darker blue text */
+  padding: 3px 8px; /* Adjust padding */
+  border-radius: 12px; /* Pill shape */
+  margin-right: 5px; /* Space between badges */
+  margin-bottom: 3px; /* Allow wrapping */
+  font-size: 0.8rem; /* Smaller badge text */
+  font-weight: 500;
+  white-space: nowrap; /* Prevent badge text wrapping */
+}
+
+/* Delete Button */
+.delete-button {
+  background-color: #dc3545; /* Red */
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease;
+}
+.delete-button:hover,
+.delete-button:focus {
+  background-color: #bb2d3b; /* Darker red */
+  outline: none;
+}
+
+/* Edit Button Placeholder Style (if you add one) */
+.edit-button {
+  background-color: #0d6efd; /* Blue */
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  margin-left: 5px; /* Space from delete button */
+  transition: background-color 0.2s ease;
+}
+.edit-button:hover,
+.edit-button:focus {
+  background-color: #0b5ed7; /* Darker blue */
+  outline: none;
+}
+
+/* Loading/Error/No Data Messages */
+.loading-message,
+.error-message,
+.no-data-message {
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  color: #6c757d; /* Grey text */
+}
+
+.error-message {
+  color: #dc3545; /* Red for errors */
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+/* Specific style for 'no data' message within the table */
+.no-data-message {
+    font-style: italic;
+}

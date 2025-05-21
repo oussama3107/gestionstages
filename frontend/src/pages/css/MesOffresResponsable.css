@@ -1,0 +1,258 @@
+/* src/css/MesOffresResponsable_Modern.css */
+/* Styles basés sur le thème de DashboardResponsable_Modern.css mais adaptés */
+
+/* Réutiliser les variables si définies globalement ou redéfinir ici */
+:root {
+  --mo-primary: var(--rh-primary-color, #20c997);
+  --mo-secondary: var(--rh-secondary-color, #5a6268);
+  --mo-accent: var(--rh-accent-color, #0dcaf0);
+  --mo-text-dark: var(--rh-text-primary, #1a202c);
+  --mo-text-light: var(--rh-text-secondary, #4a5568);
+  --mo-bg-page: var(--rh-bg-page, #f7f9fc);
+  --mo-bg-card: var(--rh-white-color, #ffffff);
+  --mo-border-color: var(--rh-border-color, #e2e8f0);
+  --mo-shadow: var(--rh-shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.1));
+  --mo-radius: var(--rh-radius-lg, 0.5rem);
+  --mo-success: var(--rh-success-color, #198754);
+  --mo-danger: var(--rh-danger-color, #dc3545);
+  --mo-warning: var(--rh-warning-color, #ffc107);
+  --mo-info: var(--rh-info, #0dcaf0); /* Pour 'en_attente' par exemple */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* --- Page Layout --- */
+.mo-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--mo-bg-page);
+
+}
+
+/* --- Navbar (Utilise .responsable-navbar de DashboardResponsable.css) --- */
+/* Assurez-vous que DashboardResponsable.css est importé OU copiez/adaptez les styles de la navbar ici */
+/* Exemple minimal pour la navbar si DashboardResponsable.css n'est pas importé globalement */
+.responsable-navbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 35px; background-color: var(--mo-bg-card);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 1000;
+  border-bottom: 1px solid var(--mo-border-color);
+}
+.navbar-brand .nav-logo { height: 75px; }
+.navbar-brand .rh-app-title { font-size: 1.25rem; font-weight: 700; color: var(--mo-primary); margin-left: 10px;}
+.rh-navbar-links { display: flex; gap: 30px; }
+.rh-navbar-links a { text-decoration: none; color: var(--mo-text-dark); font-weight: 500; font-size: 0.95em; padding-bottom: 8px; border-bottom: 3px solid transparent; transition: color 0.3s ease, border-color 0.3s ease; }
+.rh-navbar-links a:hover, .rh-navbar-links a.active { color: var(--mo-primary); border-bottom-color: var(--mo-primary); }
+.rh-navbar-actions { display: flex; align-items: center; gap: 20px; }
+.rh-notification-icon { position: relative; cursor: pointer; color: var(--mo-secondary); font-size: 1.35em; padding: 8px; border-radius: 50%; transition: color 0.2s, background-color 0.2s;}
+.rh-notification-icon:hover { color: var(--mo-primary); background-color: #f0f2f5;}
+.rh-logout-button { padding: 8px 18px; background-color: transparent; color: var(--mo-danger); border: 1px solid var(--mo-danger); border-radius: 5px; cursor: pointer; font-weight: 500; font-size: 0.9em; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 6px;}
+.rh-logout-button:hover { background-color: var(--mo-danger); color: white; }
+
+
+/* --- Contenu Principal --- */
+.mo-content-area {
+  padding: 2rem 2.5rem; /* 32px 40px */
+  flex-grow: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.mo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--mo-border-color);
+}
+.mo-header h1 {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--mo-text-dark);
+  margin: 0;
+}
+.mo-add-offer-btn {
+  background-color: var(--mo-primary); color: white;
+  padding: 0.7rem 1.3rem; border: none; border-radius: var(--mo-radius);
+  font-weight: 600; font-size: 0.9rem; cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.mo-add-offer-btn:hover { background-color: var(--rh-primary-darker, #1aa07a); transform: translateY(-1px); }
+.mo-add-offer-btn i { font-size: 1em; }
+
+
+/* --- Messages --- */
+.mo-form-submit-message { padding: 12px 18px; margin-bottom: 25px; border-radius: 4px; text-align: center; font-weight: 500; font-size: 0.95em; border: 1px solid transparent;}
+.mo-form-submit-message.success { background-color: #d1e7dd; color: #0f5132; border-color: #badbcc; }
+.mo-form-submit-message.error { background-color: #f8d7da; color: #721c24; border-color: #f5c2c7; }
+.mo-error-message-list { color: var(--mo-danger); background-color: #fdecea; border: 1px solid #f8c9d3; padding: 15px; border-radius: var(--mo-radius); margin-bottom: 20px; text-align: center; }
+
+/* --- Liste des Offres --- */
+.mo-offers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 1.75rem; }
+.mo-offer-card {
+  /* Réutilise .dashboard-card pour la base (fond, ombre, bordure, radius) */
+  display: flex; flex-direction: column; overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.mo-offer-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.12); }
+
+.mo-offer-card-top { padding: 0.75rem 1.25rem; display: flex; justify-content: space-between; align-items: center; background-color: var(--mo-bg-light); border-bottom: 1px solid var(--mo-border-color); }
+.mo-offer-status { font-size: 0.7rem; font-weight: bold; padding: 0.25rem 0.6rem; border-radius: 999px; color: white; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2;}
+/* Classes de statut (couleurs) */
+.status-en-attente { background-color: var(--mo-info); color: white;} /* Changé pour info (bleu clair) */
+.status-publiee { background-color: var(--mo-success); }
+.status-brouillon { background-color: var(--mo-secondary); }
+.status-refusee { background-color: var(--mo-danger); }
+.status-archivee { background-color: var(--mo-text-dark); }
+.status-inconnu { background-color: var(--mo-secondary); }
+.mo-offer-date { font-size: 0.75rem; color: var(--mo-text-muted); }
+
+.mo-offer-card-content { padding: 1.25rem; flex-grow: 1; }
+.mo-offer-card-content h3 { font-family: var(--font-heading); margin-top: 0; margin-bottom: 0.6rem; font-size: 1.15rem; color: var(--mo-primary); line-height: 1.35; }
+.mo-offer-location-dept { font-size: 0.85rem; color: var(--mo-text-muted); margin-bottom: 0.75rem; display: flex; align-items: center; flex-wrap: wrap; gap: 0.25rem 0.75rem; }
+.mo-offer-location-dept i { margin-right: 0.25rem; }
+.mo-offer-details-summary { font-size: 0.9rem; color: var(--mo-text-secondary); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; }
+.mo-offer-details-summary span { display: flex; align-items: center; gap: 0.3rem; }
+.mo-offer-details-summary i { color: var(--mo-primary); opacity: 0.7; }
+.mo-offer-description-preview { font-size: 0.9rem; color: var(--mo-text-dark); line-height: 1.5; max-height: 4.5em; overflow: hidden; text-overflow: ellipsis; }
+
+.mo-offer-card-actions { padding: 1rem 1.25rem; background-color: var(--mo-bg-light); border-top: 1px solid var(--mo-border-color); display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: auto; }
+.mo-action-btn { padding: 0.5rem 1rem; font-size: 0.85rem; border-radius: var(--mo-radius); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600; transition: all 0.2s ease; border: 1px solid transparent; }
+.mo-action-btn i { font-size: 0.9em; }
+.mo-action-btn.edit { background-color: var(--mo-warning); color: #4d3800; border-color: var(--mo-warning); }
+.mo-action-btn.edit:hover { background-color: #e6a00a; border-color: #e6a00a; }
+.mo-action-btn.delete { background-color: transparent; color: var(--mo-danger); border-color: var(--mo-danger); }
+.mo-action-btn.delete:hover { background-color: var(--mo-danger); color: white; }
+.mo-action-btn.view { background-color: var(--mo-secondary); color: white; border-color: var(--mo-secondary); }
+.mo-action-btn.view:hover { background-color: #545b62; border-color: #545b62; }
+.mo-action-btn.archive { background-color: #6c757d; color: white; border-color: #6c757d; }
+.mo-action-btn.archive:hover { background-color: #5a6268; }
+.mo-action-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.mo-action-btn i.fa-spinner { animation: spinAdmin 1s linear infinite; }
+@keyframes spinAdmin { to { transform: rotate(360deg); } }
+
+
+/* --- Formulaire Offre (Modal Overlay) --- */
+.mo-offre-form-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(30, 41, 59, 0.7); display: flex; justify-content: center; align-items: center; z-index: 1060; padding: 20px; animation: fadeInOverlayModal 0.3s ease-out; }
+.mo-offre-form-container { background-color: var(--mo-bg-card); border-radius:var(--mo-radius); box-shadow:var(--mo-shadow); max-width: 700px; width: 95%; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; animation: scaleInModalContent 0.3s ease-out; }
+.mo-form-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid var(--mo-border-color); background-color: var(--mo-light-gray); }
+.mo-form-header h2 { margin: 0; font-size: 1.25rem; font-weight: 600; color: var(--mo-text-dark); }
+.mo-close-form-btn { background: none; border: none; font-size: 1.8rem; line-height: 1; color: var(--mo-text-muted); cursor: pointer; padding: 0.25rem; transition: color 0.2s ease; }
+.mo-close-form-btn:hover { color: var(--mo-danger); }
+.mo-actual-form { padding: 1.5rem; overflow-y: auto; flex-grow: 1; display: flex; flex-direction: column; gap: 1rem; }
+.mo-form-section { margin-bottom: 0.5rem; }
+.mo-form-row { display: flex; gap: 1.25rem; }
+.mo-form-row .mo-form-group { flex: 1; }
+.mo-form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+.mo-form-group label { font-weight: 500; font-size: 0.875rem; color: var(--mo-text-secondary); }
+.mo-form-group label .required { color: var(--mo-danger); margin-left: 0.125rem; }
+.mo-form-input, .mo-actual-form select, .mo-actual-form textarea { width: 100%; padding: 0.65rem 0.85rem; border: 1px solid var(--mo-border-color); border-radius: var(--mo-radius); font-size: 0.95em; font-family: inherit; transition: border-color 0.2s ease, box-shadow 0.2s ease; background-color: var(--mo-white-color); }
+.mo-form-input:focus, .mo-actual-form select:focus, .mo-actual-form textarea:focus { outline: none; border-color: var(--mo-primary); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15); }
+.mo-form-input.mo-disabled-input { background-color: #e9ecef; color: #6c757d; cursor: not-allowed; }
+.mo-actual-form textarea { min-height: 100px; resize: vertical; }
+.mo-error-text { color: var(--mo-danger); font-size: 0.8rem; margin-top: 0.25rem; }
+.mo-form-actions { display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--mo-border-color); }
+.mo-form-button { padding: 0.6rem 1.2rem; border-radius: var(--mo-radius); font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: background-color 0.2s ease; }
+.mo-cancel-button { background-color: var(--mo-secondary); color: white; }
+.mo-cancel-button:hover { background-color: #545b62; }
+.mo-submit-button { background-color: var(--mo-success); color: white; }
+.mo-submit-button:hover:not(:disabled) { background-color: #147a44; }
+.mo-submit-button:disabled { background-color: #aaa; cursor: not-allowed; }
+.mo-form-note { text-align: center; font-size: 0.8rem; color: var(--mo-text-muted); margin-top: 1rem; }
+
+
+/* Utilitaires */
+.mo-loading-indicator { display: flex; align-items: center; justify-content: center; padding: 50px; font-size: 1.1em; color: var(--mo-text-secondary); gap: 10px; }
+.spinner-large { /* Repris de DashboardAdmin_Modern.css */ width: 2em; height: 2em; border: 3px solid rgba(79, 70, 229, 0.2); border-radius: 50%; border-top-color: var(--mo-primary); animation: spinAdmin 1s linear infinite; }
+@keyframes spinAdmin { to { transform: rotate(360deg); } }
+.mo-error-message-list { color: var(--mo-danger); background-color: #fdecea; border: 1px solid #f8c9d3; padding: 15px; border-radius: var(--mo-radius); margin-bottom: 20px; text-align: center; }
+.mo-no-offers-message { text-align: center; color: var(--mo-text-muted); padding: 40px 20px; font-style: italic; background-color: var(--mo-card-bg); border-radius: var(--mo-radius); box-shadow: var(--mo-shadow); margin-top: 20px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mo-content-area { padding: 1.5rem; }
+  .mo-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .mo-add-offer-btn { width: 100%; text-align: center; }
+  .mo-offers-grid { grid-template-columns: 1fr; }
+  .mo-form-row { flex-direction: column; gap: 1rem; margin-bottom: 0;}
+  .mo-form-row .mo-form-group { margin-bottom: 1rem; }
+}
+
+/* DANS src/css/MesOffresResponsable.css */
+
+/* ... (styles existants pour .mo-page, .responsable-navbar, etc.) ... */
+
+/* --- Styles pour le Formulaire d'Offre (dans la modale) --- */
+
+.mo-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px; /* Garder l'espacement entre les groupes */
+}
+.mo-form-group label { /* ... styles ... */ }
+.mo-form-input, .mo-form-textarea { /* ... styles ... */ }
+.mo-form-input.mo-disabled-input { /* ... styles ... */ }
+.mo-form-textarea { /* ... styles ... */ }
+.mo-error-text { /* ... styles ... */ }
+
+/* --- NOUVEAU/ADAPTÉ : Champ Ville AVEC Suggestions DANS OffreForm --- */
+.mo-form-group .ville-container-form { /* Conteneur spécifique DANS le form */
+  position: relative; /* Pour positionner la liste de suggestions */
+}
+
+.mo-form-group .suggestions-list-form {
+  list-style: none;
+  margin: 2px 0 0 0; /* Petite marge au-dessus, alignée avec l'input */
+  padding: 0;
+  border: 1px solid var(--offre-border-color, #ced4da); /* Utiliser variables si définies */
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  max-height: 180px;
+  overflow-y: auto;
+  background: #ffffff;
+  z-index: 1120; /* Au-dessus du formulaire modal mais sous d'autres modales globales si besoin */
+  position: absolute;
+  width: 100%; /* Prend la largeur de .ville-container-form (donc de l'input) */
+  left: 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.mo-form-group .suggestions-list-form li {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 0.9em;
+}
+
+.mo-form-group .suggestions-list-form li:hover,
+.mo-form-group .suggestions-list-form li:focus {
+  background-color: #f0f6ff; /* Couleur de survol/focus */
+  outline: none;
+}
+/* --- FIN Styles Suggestions Ville Formulaire --- */
+
+
+
+
+/* Spinner pour bouton submit */
+.mo-submit-button .spinner-small {
+    display: inline-block;
+    width: 0.9em;
+    height: 0.9em;
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spinFormButton 0.8s ease-in-out infinite;
+    margin-right: 6px;
+    vertical-align: -0.1em;
+}
+@keyframes spinFormButton { to { transform: rotate(360deg); } }
+
+/* ... (Autres styles : .mo-loading-indicator, .mo-error-message-list, .mo-offers-grid, etc.) ... */

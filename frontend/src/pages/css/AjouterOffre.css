@@ -1,0 +1,154 @@
+/* --- Import or define Navbar styles --- */
+/* @import url('./DashboardEtudiant.css'); */ /* If reusing */
+
+/* --- Page Wrapper --- */
+.ajouter-offre-page {
+  /* Optional: Set background or min-height if needed */
+}
+
+/* --- Form Container Styling --- */
+.form-container-wrapper {
+  max-width: 700px; /* Adjust max width */
+  margin: 30px auto; /* Center form and add spacing */
+  padding: 25px 35px; /* Padding inside container */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Form Layout */
+.form-offre {
+  display: flex;
+  flex-direction: column;
+  gap: 18px; /* Space between form groups */
+}
+
+.form-offre h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 25px;
+  color: #212529;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+/* Form Group (Label + Input/Select/Textarea) */
+.form-group {
+  /* Container for label and input */
+}
+
+/* Labels */
+.form-offre label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #495057;
+  font-size: 0.9rem;
+}
+.required {
+    color: #dc3545; /* Red asterisk for required */
+    margin-left: 2px;
+}
+
+/* Input Fields, Select, Textarea */
+.form-offre input[type="text"],
+.form-offre input[type="number"],
+.form-offre select,
+.form-offre textarea {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  font-family: inherit; /* Use body font */
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  line-height: 1.5;
+}
+.form-offre textarea {
+    resize: vertical; /* Allow vertical resize */
+}
+
+/* Focus Styles */
+.form-offre input[type="text"]:focus,
+.form-offre input[type="number"]:focus,
+.form-offre select:focus,
+.form-offre textarea:focus {
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Input Placeholder Style */
+.form-offre input::placeholder,
+.form-offre textarea::placeholder {
+    color: #adb5bd;
+    opacity: 1;
+}
+
+/* Row for side-by-side fields */
+.form-row {
+    display: flex;
+    gap: 15px; /* Space between items in row */
+}
+.form-row .form-group {
+    flex: 1; /* Allow groups to take equal space */
+}
+
+/* Submit Button */
+.submit-button-offre { /* Unique class name */
+  margin-top: 20px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  background-color: #0d6efd; /* Blue */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  font-weight: 500;
+  width: 100%; /* Full width button */
+}
+
+.submit-button-offre:hover:not(:disabled) {
+  background-color: #0b5ed7; /* Darker blue */
+}
+.submit-button-offre:disabled {
+  background-color: #6c757d; /* Grey */
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.submit-button-offre:focus {
+    outline: 2px solid #0b5ed7;
+    outline-offset: 1px;
+}
+.submit-button-offre:focus:not(:focus-visible){
+    outline: none;
+}
+
+/* Message Styling (Error/Success) */
+.error-message,
+.success-message {
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.9em;
+    border: 1px solid transparent;
+}
+.success-message {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border-color: #badbcc;
+}
+.error-message {
+    background-color: #f8d7da;
+    color: #842029;
+    border-color: #f5c2c7;
+}
+
+/* Loading container style (if needed specifically here) */
+.loading-container {
+    /* ... styles if needed ... */
+}

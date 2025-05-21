@@ -1,0 +1,369 @@
+/* --- Variables CSS pour une personnalisation facile --- */
+:root {
+  --primary-color: #007bff; /* Bleu principal (Bootstrap-like) */
+  --secondary-color: #6c757d; /* Gris secondaire */
+  --success-color: #28a745; /* Vert succès */
+  --light-bg: #f8f9fa;      /* Fond général clair */
+  --white-bg: #ffffff;      /* Fond des cartes/navbar */
+  --dark-text: #212529;     /* Texte principal sombre */
+  --muted-text: #6c757d;    /* Texte secondaire */
+  --border-color: #dee2e6;  /* Couleur de bordure légère */
+  --navbar-height: 65px;    /* Hauteur de la barre de navigation */
+  --border-radius: 6px;     /* Rayon de bordure standard */
+  --box-shadow-light: 0 2px 5px rgba(0, 0, 0, 0.06);
+  --box-shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --transition-speed: 0.3s;
+}
+
+/* --- Styles Généraux Body (Optionnel, si pas déjà défini globalement) --- */
+body {
+  font-family: var(--font-family-sans-serif);
+  margin: 0;
+  padding: 0;
+  background-color: var(--light-bg);
+  color: var(--dark-text);
+  line-height: 1.6;
+}
+
+/* --- Styles pour la Navbar (sm-navbar) --- */
+.sm-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px; /* Padding horizontal */
+  height: var(--navbar-height);
+  background-color: var(--white-bg);
+  box-shadow: var(--box-shadow-light);
+  position: sticky; /* Barre de navigation collante */
+  top: 0;
+  z-index: 1000; /* Assure qu'elle reste au-dessus */
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sm-navbar-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+
+
+.sm-nav-links {
+  display: flex;
+  gap: 25px; /* Espace entre les liens de navigation */
+}
+
+.sm-nav-links a {
+  text-decoration: none;
+  color: var(--muted-text);
+  font-weight: 500;
+  padding: 5px 0;
+  position: relative;
+  transition: color var(--transition-speed) ease;
+}
+
+.sm-nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width var(--transition-speed) ease;
+}
+
+.sm-nav-links a:hover,
+.sm-nav-links a.active {
+  color: var(--primary-color);
+}
+
+.sm-nav-links a:hover::after,
+.sm-nav-links a.active::after {
+  width: 100%;
+}
+
+.sm-navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espace entre les boutons/liens d'action */
+}
+
+.sm-action-link,
+.sm-action-button {
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  font-size: 0.9em;
+  transition: all var(--transition-speed) ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.sm-action-link.recruiter {
+  color: var(--secondary-color);
+  border: 1px solid var(--border-color);
+}
+.sm-action-link.recruiter:hover {
+  background-color: var(--light-bg);
+  border-color: var(--secondary-color);
+  color: var(--dark-text);
+}
+
+.sm-action-button.login {
+  background-color: var(--primary-color);
+  color: white;
+  border: 1px solid var(--primary-color);
+}
+.sm-action-button.login:hover {
+  background-color: #0056b3; /* Version plus foncée du primaire */
+  border-color: #0056b3;
+}
+
+/* --- Styles pour le Conteneur Principal des Offres --- */
+.liste-offres-container {
+  max-width: 1100px; /* Légèrement plus large pour plus d'espace */
+  margin: 10px auto;
+  /* Ajouter un margin-top égal ou supérieur à la hauteur de la navbar si elle est sticky */
+  margin-top: calc(var(--navbar-height) + 30px);
+  padding: 0px 20px; /* Plus de padding */
+  background-color: transparent; /* Le fond body est déjà clair */
+  position: relative;
+  bottom: 40px;
+}
+
+.liste-offres-container h1 {
+  text-align: center;
+  color: var(--dark-text);
+  margin-bottom: 40px; /* Plus d'espace sous le titre */
+  font-size: 2.2em;
+  font-weight: 600;
+}
+
+/* --- Styles pour les Messages --- */
+.liste-offres-loading,
+.liste-offres-error,
+.liste-offres-empty {
+  text-align: center;
+  padding: 50px 20px;
+  font-size: 1.1em;
+  color: var(--muted-text);
+  background-color: var(--white-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  margin-top: 30px;
+  box-shadow: var(--box-shadow-light);
+}
+
+.liste-offres-error {
+  color: #721c24; /* Texte erreur plus sombre */
+  border-color: #f5c6cb;
+  background-color: #f8d7da;
+}
+
+/* --- Styles pour la Liste des Offres --- */
+.offres-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid; /* Utilisation de Grid pour une mise en page flexible */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Colonnes responsives */
+  gap: 30px; /* Espace entre les cartes */
+}
+
+/* --- Styles pour chaque Carte d'Offre --- */
+.offre-item {
+  background-color: var(--white-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 25px;
+  box-shadow: var(--box-shadow-light);
+  transition: box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease;
+  display: flex;
+  flex-direction: column; /* Organise le contenu en colonne */
+  min-height: 280px; /* Hauteur minimale pour aligner les boutons en bas */
+}
+
+.offre-item:hover {
+  box-shadow: var(--box-shadow-medium);
+  transform: translateY(-5px);
+}
+
+/* Titre de l'offre */
+.offre-item h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: var(--primary-color);
+  font-size: 1.3em;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Détails Meta (entreprise, lieu, etc.) */
+.offre-entreprise,
+.offre-service,
+.offre-ville,
+.offre-departement,
+.offre-duree,
+.offre-places {
+  font-size: 0.9em;
+  color: var(--muted-text);
+  margin-bottom: 5px;
+  display: flex; /* Pour aligner icône et texte si vous ajoutez des icônes */
+  align-items: center;
+  gap: 6px; /* Espace entre icône et texte */
+}
+/* Icônes (exemple si vous ajoutez Font Awesome)
+.offre-entreprise::before { content: '\f1ad'; font-family: 'Font Awesome 5 Free'; font-weight: 900; }
+.offre-ville::before { content: '\f3c5'; font-family: 'Font Awesome 5 Free'; font-weight: 900; }
+*/
+
+/* Description de l'offre */
+.offre-description {
+  color: var(--dark-text);
+  line-height: 1.6;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  font-size: 0.95em;
+  flex-grow: 1; /* Fait grandir la description pour pousser le bouton en bas */
+}
+
+/* Bouton Postuler */
+.postuler-bouton {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--success-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color var(--transition-speed) ease, transform 0.15s ease;
+  margin-top: auto; /* Pousse le bouton vers le bas dans le flex container */
+  align-self: flex-start; /* Alignement à gauche */
+}
+
+.postuler-bouton:hover {
+  background-color: #1e7e34; /* Vert plus foncé */
+  transform: scale(1.03);
+}
+
+.postuler-bouton:active {
+    transform: scale(0.98);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+  .sm-navbar { padding: 0 15px; }
+  .sm-nav-links { gap: 15px; }
+  .liste-offres-container { padding: 20px; }
+  .offres-list { gap: 20px; }
+}
+
+@media (max-width: 768px) {
+  /* Masquer les liens de navigation centraux et préparer pour un menu burger (si besoin) */
+  .sm-nav-links { display: none; }
+  .sm-navbar { justify-content: space-between; } /* Brand à gauche, Actions à droite */
+  .liste-offres-container h1 { font-size: 1.8em; margin-bottom: 30px; }
+  .offres-list { grid-template-columns: 1fr; /* Une colonne sur mobile */ }
+  .offre-item { min-height: auto; } /* Plus besoin de hauteur min si une colonne */
+  .postuler-bouton { align-self: stretch; text-align: center; /* Bouton pleine largeur */ }
+}
+
+@media (max-width: 480px) {
+  .sm-navbar-actions { gap: 8px; }
+  .sm-action-link, .sm-action-button { padding: 6px 10px; font-size: 0.8em; }
+  .liste-offres-container { padding: 15px; }
+}
+
+/* --- Styles pour la section de filtres --- */
+.filters-section {
+  display: flex;
+  flex-wrap: wrap; /* Permet aux filtres de passer à la ligne si pas assez de place */
+  gap: 20px; /* Espace entre les groupes de filtres */
+  padding: 20px;
+  background-color: var(--white-bg);
+  border-radius: var(--border-radius);
+  margin-bottom: 30px; /* Espace sous la barre de filtres */
+  box-shadow: var(--box-shadow-light);
+  border: 1px solid var(--border-color);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column; /* Label au-dessus du champ */
+  flex-grow: 1; /* Permet aux groupes de s'étendre */
+}
+
+/* Style spécifique pour la recherche pour qu'elle prenne plus de place */
+.filter-group.search-filter {
+  flex-grow: 2; /* Prend deux fois plus de place que les autres */
+  min-width: 250px; /* Largeur minimale */
+}
+.filter-group.ville-filter {
+    min-width: 180px;
+}
+/* Optionnel : pour le select service
+.filter-group.service-filter {
+    min-width: 200px;
+} */
+
+.filter-label {
+  font-size: 0.85em;
+  font-weight: 500;
+  color: var(--muted-text);
+  margin-bottom: 6px;
+  display: flex; /* Pour aligner icône et texte du label */
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-input,
+.filter-select {
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 0.95em;
+  transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  width: 100%; /* Prend toute la largeur du groupe */
+  box-sizing: border-box; /* Inclut padding et border dans la largeur */
+}
+
+.filter-input:focus,
+.filter-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Indicateur de focus */
+}
+
+/* Placeholder stylisé (optionnel) */
+.filter-input::placeholder {
+  color: #adb5bd;
+  opacity: 1;
+}
+
+/* --- Style pour le compteur de résultats --- */
+.results-count {
+  text-align: left;
+  margin-bottom: 20px;
+  color: var(--muted-text);
+  font-size: 0.9em;
+}
+
+
+/* --- Responsive pour les filtres --- */
+@media (max-width: 768px) {
+  .filters-section {
+    flex-direction: column; /* Filtres les uns sous les autres */
+    gap: 15px;
+    padding: 15px;
+  }
+  .filter-group {
+      min-width: unset; /* Annule la largeur minimale */
+  }
+}

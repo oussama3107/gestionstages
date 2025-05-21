@@ -1,0 +1,151 @@
+/* src/css/CandidaturesResponsable.css */
+
+/* --- Variables (Utiliser celles de DashboardResponsable.css si importé, sinon redéfinir) --- */
+:root {
+  --cand-rh-primary: #20c997; /* Teal */
+  --cand-rh-secondary: #6c757d;
+  --cand-rh-success: #198754;
+  --cand-rh-danger: #dc3545;
+  --cand-rh-warning: #ffc107; /* Jaune pour Entretien/En Attente */
+  --cand-rh-info: #0dcaf0;    /* Cyan pour Reçue/Envoyée */
+  --cand-rh-vue: #adb5bd;     /* Gris pour Consultée */
+  --cand-rh-light-gray: #f8f9fa;
+  --cand-rh-medium-gray: #e9ecef;
+  --cand-rh-dark-gray: #495057;
+  --cand-rh-background: #f4f8ff; /* Fond page */
+  --cand-rh-white: #ffffff;
+  --cand-rh-text: #212529;
+  --cand-rh-card-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --cand-rh-card-border-radius: 8px; /* Rayon plus grand */
+  --cand-rh-border-color: #dee2e6;
+  --cand-rh-link-color: #0a58ca;
+}
+
+/* --- Layout Page & Navbar (Supposé hérité de DashboardResponsable.css) --- */
+.candidatures-responsable-page {
+  /* Hérite de .dashboard-responsable-page ou styles similaires */
+}
+.responsable-navbar {
+  /* Styles de DashboardResponsable.css */
+}
+.navbar-logo-container, .nav-logo, .navbar-links, .navbar-links a, .navbar-actions, .logout-button,
+.notification-icon-container, .notification-badge {
+    /* Héritent ou sont définis dans DashboardResponsable.css */
+}
+
+/* --- Contenu Principal --- */
+.candidatures-responsable-content {
+  padding: 30px 40px;
+  flex-grow: 1;
+  max-width: 1200px; /* Largeur max pour lisibilité */
+  margin: 0 auto; /* Centrer */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.candidatures-responsable-content h1 {
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: var(--cand-rh-text);
+  font-size: 1.9em;
+  font-weight: 600;
+}
+
+/* --- Barre de Filtres --- */
+.filters-container.card-style { /* S'assurer que .card-style est bien défini aussi */
+    display: flex; flex-wrap: wrap; gap: 20px; padding: 20px;
+    margin-bottom: 30px; background-color: var(--cand-rh-white);
+    border-radius: var(--cand-rh-card-border-radius);
+    box-shadow: var(--cand-rh-card-shadow);
+    border: 1px solid var(--cand-rh-border-color);
+}
+.filter-item { display: flex; align-items: center; gap: 8px; flex-grow: 1; min-width: 220px; }
+.filter-item.search-filter { flex-grow: 2; min-width: 300px; position: relative; }
+.filter-item label { font-size: 0.9em; color: var(--cand-rh-secondary); font-weight: 500; white-space: nowrap; margin-bottom: 0;}
+.filter-item i.fas { color: var(--cand-rh-secondary); opacity: 0.9; margin-right: 5px; }
+.filter-item input[type="search"], .filter-item select { padding: 10px 14px; border: 1px solid var(--cand-rh-border-color); border-radius: 6px; font-size: 0.95em; flex-grow: 1; background-color: var(--cand-rh-white); }
+.filter-item input[type="search"] { padding-left: 38px; }
+.filter-item .fa-search { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 0.9em; color: var(--cand-rh-secondary);}
+.filter-item input:focus, .filter-item select:focus { outline: none; border-color: var(--cand-rh-primary); box-shadow: 0 0 0 3px rgba(32, 201, 151, 0.15); }
+
+/* Message d'action */
+.action-message { /* ... comme avant ... */ }
+
+/* --- Liste des Candidatures --- */
+.candidatures-recues-list { display: flex; flex-direction: column; gap: 20px; }
+.candidature-recue-entry { /* Utilise .card-style */ padding: 0; display: flex; flex-direction: column; transition: box-shadow 0.25s ease-out; }
+.candidature-recue-entry:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.12); }
+
+.cand-main-info { display: flex; align-items: center; padding: 18px 22px; gap: 18px; flex-wrap: nowrap; /* Essayer de garder sur une ligne */}
+.cand-etudiant-photo { flex-shrink: 0; }
+.cand-etudiant-avatar { width: 50px; height: 50px; border-radius: 50%; background-color: var(--cand-rh-light-gray); display: flex; justify-content: center; align-items: center; overflow: hidden; border: 1px solid var(--cand-rh-border-color); }
+.cand-etudiant-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.cand-avatar-initials { font-size: 1.2em; font-weight: 600; color: var(--cand-rh-secondary); }
+.cand-etudiant-offre { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; /* Permet au texte de s'ajuster */}
+.cand-etudiant-name { font-weight: 600; font-size: 1.1em; color: var(--cand-rh-primary); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; /* Gérer noms longs */ }
+.cand-offre-title { font-size: 0.95em; color: var(--cand-rh-text); margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.cand-offre-title strong { font-weight: 500; }
+.cand-date { font-size: 0.8em; color: var(--cand-rh-secondary); display: flex; align-items: center; gap: 5px; }
+.cand-status { margin-left: auto; padding-left: 20px; flex-shrink: 0; align-self: center; }
+
+/* Badge statut */
+.application-status-badge { font-size: 0.8em; font-weight: bold; padding: 5px 12px; border-radius: 15px; color: var(--cand-rh-white); text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; white-space: nowrap; }
+.status-envoyee { background-color: var(--cand-rh-info); color: #fff;}
+.status-vue { background-color: var(--cand-rh-vue); color: #fff;}
+.status-entretien { background-color: var(--cand-rh-warning); color: #333; }
+.status-acceptee { background-color: var(--cand-rh-success); }
+.status-refusee { background-color: var(--cand-rh-danger); }
+.status-archivee { background-color: var(--cand-rh-secondary); }
+.status-inconnu { background-color: var(--cand-rh-secondary); }
+
+.cand-actions { padding: 10px 20px; border-top: 1px solid var(--cand-rh-border-color); background-color: var(--cand-rh-light-gray); text-align: right; }
+.action-btn { border: none; background: none; padding: 6px 8px; margin: 0 3px; cursor: pointer; font-size: 1.1em; vertical-align: middle; transition: all 0.2s ease; border-radius: 50%; width: 34px; height: 34px; line-height: 1; display: inline-flex; justify-content: center; align-items: center; color: var(--cand-rh-secondary);}
+.action-btn:hover:not(:disabled) { transform: scale(1.1); }
+.action-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.action-btn i { margin: 0; }
+.action-btn i.fa-spinner { color: var(--cand-rh-primary); animation: spinRH 1s linear infinite; }
+@keyframes spinRH { to { transform: rotate(360deg); } }
+
+/* Couleurs spécifiques boutons d'action */
+.action-btn.view-details-btn:hover:not(:disabled) { color: var(--cand-rh-primary); background-color: rgba(32, 201, 151, 0.08); }
+.action-btn.accept-btn:hover:not(:disabled) { color: var(--cand-rh-success); background-color: rgba(25, 135, 84, 0.08); }
+.action-btn.refuse-btn:hover:not(:disabled) { color: var(--cand-rh-danger); background-color: rgba(220, 53, 69, 0.08); }
+.action-btn.mark-viewed-btn:hover:not(:disabled) { color: var(--cand-rh-dark-gray); background-color: rgba(108, 117, 125, 0.1); }
+
+
+/* Détails de la candidature */
+.candidature-details-expanded { padding: 25px 30px; border-top: 2px solid var(--cand-rh-primary); margin:0; background-color: #fdfdff; animation: fadeInDetails 0.3s ease-out; }
+.candidature-details-expanded h4 { margin-top: 0; margin-bottom: 20px; color: var(--cand-rh-primary); font-size: 1.2em; border-bottom: 1px solid var(--cand-rh-border-color); padding-bottom: 10px; }
+.detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px 30px; }
+.detail-section { margin-bottom: 15px; }
+.detail-section h5 { font-size: 1em; color: var(--cand-rh-secondary); margin-bottom: 10px; font-weight: 600; }
+.detail-info p, .detail-docs p { margin-bottom: 10px; font-size: 0.95em; }
+.detail-info p strong, .detail-docs p strong { color: #555; min-width: 120px; display: inline-block; font-weight: 600;}
+.cand-motivation-message { white-space: pre-wrap; word-wrap: break-word; background-color: var(--cand-rh-light-gray); padding: 12px; border-radius: 4px; border: 1px solid var(--cand-rh-border-color); max-height: 150px; overflow-y: auto; margin: 5px 0 15px 0; font-size: 0.9em; grid-column: 1 / -1; line-height: 1.5;}
+.file-link { color: var(--cand-rh-link-color); text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; padding: 3px 0;}
+.file-link:hover { text-decoration: underline; color: #0056b3; }
+.file-link i { font-size: 1.1em; }
+.detail-docs p { margin-bottom: 12px; }
+.close-details-btn { display: block; width: fit-content; margin: 20px auto 0 auto; padding: 8px 22px; font-size: 0.9em; background-color: var(--cand-rh-secondary); color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.2s ease;}
+.close-details-btn:hover { background-color: #545b62; }
+
+/* Utilitaires */
+.loading-indicator { text-align: center; padding: 40px; font-size: 1.1em; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.spinner-large { width: 1.5em; height: 1.5em; border: 3px solid var(--cand-rh-primary); border-radius: 50%; border-top-color: transparent; animation: spinRH 1s linear infinite; }
+.error-message { /* ... comme avant ... */ }
+.no-results-message { /* ... comme avant ... */ }
+
+/* Responsive */
+@media (max-width: 992px) {
+  .candidatures-responsable-content { max-width: 100%; padding: 20px 25px; }
+}
+
+@media (max-width: 768px) {
+    .candidatures-responsable-content { padding: 20px; }
+    .filters-container { flex-direction: column; align-items: stretch; }
+    .cand-main-info { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .cand-status { margin-left: 0; margin-top: 10px; align-self: flex-start; }
+    .cand-actions { text-align: left; padding: 10px 15px; display: flex; flex-wrap: wrap; justify-content: flex-start; }
+    .action-btn { margin: 2px; }
+    .detail-grid { grid-template-columns: 1fr; }
+}

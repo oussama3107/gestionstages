@@ -1,0 +1,148 @@
+/* src/css/Register.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap');
+
+:root {
+    --reg-primary: #007BFF;
+    --reg-primary-dark: #0056b3;
+    --reg-secondary: #6c757d;
+    --reg-success: #198754; /* Vert plus pro */
+    --reg-danger: #dc3545;
+    --reg-light-gray: #f8f9fa;
+    --reg-medium-gray: #ced4da;
+    --reg-dark-gray: #495057;
+    --reg-bg-page: #f4f7fc;
+    --reg-bg-card: #ffffff;
+    --reg-white: #ffffff;
+    --reg-text: #212529;
+    --reg-card-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    --reg-border-color: #dee2e6;
+    --reg-input-focus-border: var(--reg-primary);
+    --reg-input-focus-shadow: rgba(0, 123, 255, 0.2);
+    --reg-error-bg: #f8d7da;
+    --reg-error-text: #721c24;
+    --reg-error-border: #f5c6cb;
+    --reg-success-bg: #d1e7dd;
+    --reg-success-text: #0f5132;
+    --reg-success-border: #badbcc;
+    --reg-font-primary: 'Montserrat', sans-serif;
+    --reg-font-secondary: 'Roboto', sans-serif;
+}
+
+.register-page {
+    font-family: var(--reg-font-secondary);
+    background-color: var(--reg-bg-page);
+    color: var(--reg-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--reg-bg-card); padding: 10px 40px; display: flex;
+    align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); border-bottom: 1px solid var(--reg-border-color);
+    flex-shrink: 0; z-index: 100; height: 70px;
+}
+.navbar .logo { height: 40px; }
+.navbar .nav-links { display: flex; gap: 25px; }
+.navbar .nav-links a { color: var(--reg-text-muted); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: color 0.2s ease;}
+.navbar .nav-links a:hover { color: var(--reg-primary); }
+.login-button { background-color: transparent; color: var(--reg-primary); padding: 8px 18px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--reg-primary); transition: all 0.2s ease; }
+.login-button:hover { background-color: var(--reg-primary); color: white; }
+
+/* Conteneur Inscription */
+.register-container {
+  max-width: 780px; margin: 30px auto; padding: 30px 40px; background: var(--reg-bg-card);
+  border-radius: 10px; box-shadow: var(--reg-card-shadow); border: 1px solid var(--reg-border-color);
+}
+.register-title { text-align: center; font-size: 1.8rem; font-family: var(--reg-font-primary); color: var(--reg-text); margin-bottom: 30px; font-weight: 700; }
+
+/* Sélection Profil */
+.profile-selection { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid var(--reg-border-color); }
+.profile-selection h3 { text-align: center; font-size: 1.1rem; color: var(--reg-secondary); margin-bottom: 20px; font-weight: 600; }
+.profiles { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
+.profile-box { border: 2px solid var(--reg-border-color); border-radius: 8px; padding: 20px; flex: 1; min-width: 220px; max-width: 300px; text-align: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); background-color: var(--reg-light-gray); }
+.profile-box:hover { border-color: var(--reg-primary); transform: translateY(-3px); box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+.profile-box.selected { border-color: var(--reg-primary); background-color: var(--reg-primary); color: white; box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2); transform: translateY(-3px); }
+.profile-box:focus-visible { outline: 3px solid var(--reg-primary); outline-offset: 2px; }
+.profile-box .icon { font-size: 2.2rem; margin-bottom: 10px; color: var(--reg-primary); transition: color 0.3s ease; }
+.profile-box.selected .icon { color: white; }
+.profile-box .type { font-weight: 700; font-size: 1.05rem; margin-bottom: 5px; color: var(--reg-text-dark); transition: color 0.3s ease;}
+.profile-box.selected .type { color: white; }
+.profile-box .description { font-size: 0.85em; color: var(--reg-secondary); transition: color 0.3s ease;}
+.profile-box.selected .description { color: rgba(255, 255, 255, 0.85); }
+
+/* Message Formulaire */
+.form-message { padding: 12px 18px; border-radius: 6px; margin-bottom: 25px; font-weight: 500; font-size: 0.95em; border: 1px solid transparent; text-align: center; }
+.form-message.success { background-color: var(--reg-success-bg); color: var(--reg-success-text); border-color: var(--reg-success-border); }
+.form-message.error { background-color: var(--reg-error-bg); color: var(--reg-error-text); border-color: var(--reg-error-border); }
+
+/* Formulaire */
+.register-form { display: flex; flex-direction: column; gap: 20px; }
+.selected-type-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; background-color: var(--reg-light-gray); border: 1px solid var(--reg-border-color); border-radius: 6px; margin-bottom: 15px; font-size: 1em; color: var(--reg-text-muted); }
+.selected-type-header strong { color: var(--reg-text); margin-left: 5px; }
+.change-type-button { background: none; border: none; color: var(--reg-primary); font-weight: 600; cursor: pointer; text-decoration: underline; font-size: 0.9em; }
+.change-type-button:hover { color: var(--reg-primary-dark); }
+
+.form-section { margin-bottom: 10px; } /* Réduire espace entre sections */
+.form-section h3 { font-size: 1.15rem; color: var(--reg-primary); margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px solid var(--reg-border-color); }
+.form-row { display: flex; gap: 25px; margin-bottom: 0; } /* Pas de marge basse si gap sur .register-form */
+.form-row .form-group { flex: 1; }
+.form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 18px; /* Ou gérer espacement via gap sur .register-form */ }
+.form-group.full-width { width: 100%; }
+.form-group.file-input-group { margin-bottom: 10px; }
+
+.form-label { font-weight: 500; font-size: 0.9em; color: var(--reg-dark-gray); display: block; margin-bottom: 3px; }
+.form-label .required { color: var(--reg-danger); margin-left: 2px; }
+
+.form-input, .form-file-input { padding: 11px 14px; border: 1px solid var(--reg-border-color); border-radius: 5px; width: 100%; font-size: 0.95em; font-family: inherit; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.form-input:focus, .form-file-input:focus { border-color: var(--reg-input-focus-border); box-shadow: 0 0 0 3px var(--reg-input-focus-shadow); outline: none; }
+.form-input::placeholder { color: #aaa; }
+.form-file-input { color: #555; cursor: pointer; }
+.form-file-input::file-selector-button { padding: 8px 12px; margin-right: 10px; border: none; background-color: var(--reg-primary); color: white; border-radius: 4px; cursor: pointer; transition: background-color 0.2s; font-size: 0.9em; }
+.form-file-input::file-selector-button:hover { background-color: var(--reg-primary-dark); }
+
+.form-group.ville-group { position: relative; }
+.ville-container { position: relative; }
+.suggestions-list { list-style: none; margin: 1px 0 0 0; padding: 0; border: 1px solid var(--reg-border-color); border-top: none; border-radius: 0 0 6px 6px; max-height: 160px; overflow-y: auto; background: white; z-index: 10; position: absolute; width: 100%; left: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.suggestions-list li { padding: 10px 15px; cursor: pointer; transition: background-color 0.2s ease; font-size: 0.95em; }
+.suggestions-list li:hover, .suggestions-list li:focus { background-color: var(--reg-light-gray); outline: none; }
+
+.services-checkboxes { border: 1px solid var(--reg-border-color); border-radius: 6px; padding: 20px; margin-top: 5px; background-color: #fdfdfd; max-height: 180px; overflow-y: auto; }
+.services-checkboxes legend.form-label { font-size: 1em; font-weight: 600; color: var(--reg-text-dark); margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px solid var(--reg-border-color); }
+.checkbox-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px 15px; }
+.checkbox-item { display: flex; align-items: center; gap: 8px; }
+.checkbox-item input[type="checkbox"] { width: 17px; height: 17px; cursor: pointer; accent-color: var(--reg-primary); flex-shrink: 0; }
+.checkbox-item label { font-size: 0.95em; color: #444; cursor: pointer; user-select: none; font-weight: normal; }
+.services-checkboxes p { text-align: center; font-style: italic; color: var(--reg-secondary); padding: 10px 0;}
+
+.submit-button { padding: 13px 25px; border: none; border-radius: 6px; background-color: var(--reg-success); color: white; font-size: 1.05em; font-weight: 600; cursor: pointer; transition: background-color 0.3s ease, opacity 0.3s ease; margin-top: 15px; width: 100%; }
+.submit-button:hover:not(:disabled) { background-color: #147a44; }
+.submit-button:disabled { background-color: #95a5a6; cursor: not-allowed; opacity: 0.7; }
+
+.login-prompt { text-align: center; margin-top: 25px; font-size: 0.95em; color: var(--reg-secondary); }
+.login-link { color: var(--reg-primary); text-decoration: none; font-weight: 600; }
+.login-link:hover { text-decoration: underline; color: var(--reg-primary-dark); }
+.select-prompt { text-align: center; margin-top: 20px; color: var(--reg-secondary); font-style: italic; }
+
+/* Responsive */
+@media (max-width: 768px) { .navbar { padding: 10px 20px; } .nav-links { display: none; } .register-container { margin: 20px; padding: 25px; } .profiles { flex-direction: column; gap: 15px; } .profile-box { flex-basis: auto; max-width: none; } .form-row { flex-direction: column; gap: 18px; margin-bottom: 0; } .checkbox-options { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .register-title { font-size: 1.7rem; margin-bottom: 25px; } .register-container { padding: 20px; } .profile-box { padding: 15px; } .profile-box .icon { font-size: 2rem; } .profile-box .type { font-size: 1rem; } .profile-box .description { font-size: 0.8em; } .form-input, .form-file-input, .checkbox-item label { font-size: 0.95em; } .submit-button { font-size: 1em; padding: 12px; } .login-prompt { font-size: 0.9em; } }
+
+
+/* Dans Register.css (extraits pertinents) */
+.ville-group { position: relative; }
+.ville-input-container { position: relative; }
+.suggestions-list {
+    position: absolute; top: 100%; left: 0; right: 0;
+    background-color: var(--sm-bg-white); border: 1px solid var(--sm-border-color);
+    border-top: none; border-radius: 0 0 var(--sm-border-radius) var(--sm-border-radius);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); list-style: none;
+    padding: 0; margin: 0; max-height: 180px; overflow-y: auto;
+    z-index: 1000; animation: fadeInDropdown 0.2s ease-out;
+}
+@keyframes fadeInDropdown { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+.suggestions-list li { padding: 10px 12px; cursor: pointer; font-size: 0.9em; transition: background-color 0.15s ease; }
+.suggestions-list li:hover, .suggestions-list li:focus { background-color: #f0f0f0; outline: none; }
+/* ... (autres styles de Register.css) ... */
